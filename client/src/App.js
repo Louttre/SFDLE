@@ -14,6 +14,8 @@ import Login from "./pages/Login";
 import EmailVerification from "./pages/EmailVerification";
 import { useAuthStore } from "./store/authStore";
 import ResetPassword from "./pages/ResetPassword";
+import Loginsfdle from "./pages/Loginsfdle";
+import Main from "./pages/Main";
 
 
 const RedirectAuthUser = ({ children }) => {
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
         element: <Reset />
     },
     {
+        path: '/main',
+        element: <Main />
+    },
+    {
         path: '/profil',
         element: <ProtectedRoute><Profil /></ProtectedRoute>
     },
@@ -68,6 +74,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <RedirectAuthUser><Login /></RedirectAuthUser>
+    },
+    {
+        path: '/loginsfdle',
+        element: <RedirectAuthUser><Loginsfdle /></RedirectAuthUser>
     },
     {
         path: '/verify-email',
@@ -84,13 +94,10 @@ const router = createBrowserRouter([
 
 export default function App() {
     
-    const { isCheckingAuth, checkAuth, isAuth, user } = useAuthStore();
+    const { checkAuth } = useAuthStore();
     useEffect(() => {
         checkAuth();
     }, [checkAuth]);
-    console.log('isCheckingAuth', isCheckingAuth);
-    console.log('isAuth', isAuth);
-    console.log('user', user);
     return (
         <div>
             <div className='min-h-screen bg-gradient-to-br

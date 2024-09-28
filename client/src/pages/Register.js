@@ -6,7 +6,6 @@ import Input from '../components/input';
 import { motion } from "framer-motion";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
-
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

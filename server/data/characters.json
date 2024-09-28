@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Ryu",
+        "height": "175cm",
+        "weight": "85kg",
+        "birthplace": "Japan",
+        "genre": "Male",
+        "eye_color": ["Brown"],
+        "fighting_style": ["Ansatsuken"],
+        "special_moves": [
+            "Shinku Hadoken",
+            "Shin Hashogeki",
+            "Shin Shoryuken"
+        ],
+        "image": "https://static.wikia.nocookie.net/streetfighter/images/6/60/RyuSF6Outfit1.png/revision/latest?cb=20230619153732",
+        "first_appearance": "Street Fighter",
+        "emoji": [
+            "🥋",
+            "👊",
+            "💨"
+        ],
+        "theme_song": "https://www.youtube.com/watch?v=Rie_1u6Ple8"
+    },
+    {
+        "name": "Ken Masters",
+        "height": "175cm",
+        "weight": "83kg",
+        "birthplace": "USA",
+        "genre": "Male",
+        "eye_color": ["Blue"],
+        "fighting_style": ["Ansatsuken"],
+        "special_moves": [
+            "Dragonlash Flame",
+            "Shippu Jinrai-kyaku",
+            "Shinryu Reppa"
+        ],
+        "image": "https://static.wikia.nocookie.net/streetfighter/images/0/08/KenSF6Outfit1.png/revision/latest?cb=20230619155011",
+        "first_appearance": "Street Fighter",
+        "emoji": [
+            "🔴",
+            "🥋",
+            "🔥"
+        ],
+        "theme_song": "https://www.youtube.com/watch?v=IbPoYZbk_jM"
+    },
+    {
+        "name": "Juri Han",
+        "height": "165cm",
+        "weight": "57kg",
+        "birthplace": "South Korea",
+        "genre": "Female",
+        "fighting_style": ["Taekwondo"],
+        "eye_color":["Purple"],
+        "special_moves": [
+            "Sakkai Fuhazan",
+            "Feng Shui Engine",
+            "Kaisen Dankairaku"
+        ],
+        "image": "https://static.wikia.nocookie.net/streetfighter/images/4/41/JuriSF6Outfit1.png/revision/latest?cb=20230619155716",
+        "first_appearance": "Street Fighter IV",
+        "emoji": [
+            "😈",
+            "🕷️",
+            "👣"
+        ],
+        "theme_song": "https://www.youtube.com/watch?v=_TcaWC551bw"
+    },
+    {
+        "name": "Kazuya Mishima",
+        "height": "181cm",
+        "weight": "85kg",
+        "birthplace": "Japan",
+        "genre": "Male",
+        "eye_color": ["Brown", "Red"],
+        "fighting_style": ["Mishima Style Fighting Karate"],
+        "special_moves": [
+            "Devil Beam",
+            "Twin Pistons",
+            "Dragon Uppercut"
+        ],
+        "image": "",
+        "first_appearance": "Tekken",
+        "emoji": [
+            "👿",
+            "⚡",
+            "👊"
+        ],
+        "theme_song": ""
+    },
+    {
+        "name": "Guile",
+        "height": "182cm",
+        "weight": "99kg",
+        "birthplace": "USA",
+        "genre": "Male",
+        "eye_color": ["Blue"],
+        "fighting_style": ["Special Forces Training"],
+        "special_moves": [
+            "Sonic Boom",
+            "Flash Kick",
+            "Sonic Hurricane"
+        ],
+        "image": "",
+        "first_appearance": "Street Fighter II",
+        "emoji": [
+            "🇺🇸",
+            "👊",
+            "💨"
+        ],
+        "theme_song": ""
+    },
+    {
+        "name": "Reina",
+        "height": "162cm",
+        "weight": "51kg",
+        "birthplace": "Unkwnown",
+        "genre": "female",
+        "eye_color": ["Purple"],
+        "fighting_style": ["Taïdo", "Mishima Style Fighting Karate"],
+        "special_moves": [
+            "Electric Wind God Fist",
+            "Sentai",
+            "Queen Bee Stinger"
+        ],
+        "image": "",
+        "first_appearance": "Tekken 8",
+        "emoji": [
+            "🟣",
+            "🗲",
+            "👊"
+        ],
+        "theme_song": ""
+    }
+]

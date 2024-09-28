@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./styles.css";
 
-const Login = () => {
+export const Loginsfdle = () => {
     return (
         <div id="overlay" className="absolute h-full w-full max-w-[400px] p-2 bg-black/60 backdrop-blur-lg flex items-center justify-center">
             <div id="frame2" className="relative w-full px-8 py-2 flex flex-col ">
@@ -32,10 +33,10 @@ const Login = () => {
                                 type="password"
                                 placeholder="Entrez votre mot de passe"
                                 className="text-white bg-transparent border-b border-white focus:outline-none"
+                                autoComplete="on"
                             />
                         </div>
                     </div>
-
                     <div id="frame3" className="bg-white h-[40px] rounded-[25px] flex justify-center items-center">
                         <div id="connexion2" className="text-black text-[20px] font-roboto">
                             Connexion
@@ -54,4 +55,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Loginsfdle;
