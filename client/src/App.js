@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import FloatingShape from "./components/FloatingShape";
 
 //import all components
 import Username from './pages/Username';
@@ -100,14 +99,9 @@ export default function App() {
     }, [checkAuth]);
     return (
         <div>
-            <div className='min-h-screen bg-gradient-to-br
-        bg-gradient-to-br from-black from-0% via-slate-900 to-cyan-900 to-100% flex items-center justify-center relative overflow-hidden'
-            >
-                <FloatingShape color='bg-teal-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
-                <FloatingShape color='bg-white' size='w-48 h-48' top='70%' left='80%' delay={5} />
-                <FloatingShape color='bg-gray-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
+
                 <RouterProvider router={router} />
-            </div>
         </div>
+
     );
 }

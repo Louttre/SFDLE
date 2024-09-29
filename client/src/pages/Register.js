@@ -6,6 +6,8 @@ import Input from '../components/input';
 import { motion } from "framer-motion";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import FloatingShape from '../components/FloatingShape';
+
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -24,6 +26,13 @@ const Register = () => {
         }
     }
     return (
+
+        <div className='min-h-screen bg-gradient-to-br
+    bg-gradient-to-br from-black from-0% via-slate-900 to-cyan-900 to-100% flex items-center justify-center relative overflow-hidden'
+        >
+            <FloatingShape color='bg-teal-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
+            <FloatingShape color='bg-white' size='w-48 h-48' top='70%' left='80%' delay={5} />
+            <FloatingShape color='bg-gray-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -72,7 +81,7 @@ const Register = () => {
                             type='submit'
                             disabled={isLoading}
                         >
-                            {isLoading ? <Loader className='animate-spin mx-auto' size={24}/> : "Sign Up"}
+                            {isLoading ? <Loader className='animate-spin mx-auto' size={24} /> : "Sign Up"}
                         </motion.button>
                     </form>
                 </div>
@@ -85,6 +94,7 @@ const Register = () => {
                     </p>
                 </div>
             </motion.div>
+        </div>
     );
 };
 
