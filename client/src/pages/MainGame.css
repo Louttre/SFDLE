@@ -1,4 +1,12 @@
-.background {
+.guesses-container {
+  max-height: 400px; /* Set a maximum height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.guesses-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}.background {
     justify-content: center;
     display: flex;
     flex-direction: column;

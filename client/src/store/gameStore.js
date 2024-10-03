@@ -30,38 +30,27 @@ const useCharacterStore = create((set) => ({
         }
     },
 
-    // Action to select a character and fetch comparison results
-    selectCharacter: (character) => {
+    // Combined action to select a character and fetch both characteristics and comparison results
+    selectCharacterAndFetchData: async (character) => {
+        try {
+            // Set the selected character
+            set({ selectedCharacter: character });
 
-        set({ selectedCharacter: character });
-        axios.post(`${API_URL}/compare`, ({ guess: character }))
-            .then(response => {
-                //console.log(response.data)
-                set({ comparisonResults: response.data });
-            })
-            .catch(err => {
-                console.error('Error fetching comparison results:', err);
-            });
-            axios.post(`${API_URL}/characteristics`, ({ name: character }))
-            .then(response => {
-                //console.log(response.data); // Log the response data
-                set({ characterCharacteristics: response.data });
-            })
-            .catch(err => {
-                console.error('Error retrieving character characteristics:', err);
-            });
-    },
+            // Fetch both characteristics and comparison results concurrently
+            const [characteristicsResponse, comparisonResponse] = await Promise.all([
+                axios.post(`${API_URL}/characteristics`, { name: character }),
+                axios.post(`${API_URL}/compare`, { guess: character })
+            ]);
 
-    getcharacteristics: (character) => {
-        // Use params to send character name as query parameter
-        axios.post(`${API_URL}/characteristics`, ({ name: character }))
-            .then(response => {
-                //console.log(response.data); // Log the response data
-                set({ characterCharacteristics: response.data });
-            })
-            .catch(err => {
-                console.error('Error retrieving character characteristics:', err);
+            // Update the store with both data points only after both requests succeed
+            set({
+                characterCharacteristics: characteristicsResponse.data,
+                comparisonResults: comparisonResponse.data
             });
+
+        } catch (err) {
+            console.error('Error fetching character data:', err);
+        }
     },
 }));
 

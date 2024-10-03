@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CharacterSquares from '../components/characterSquares'; // Import CharacterSquares component
 import useCharacterStore from '../store/gameStore'; // Import Zustand store
 import './MainGame.css'; // Import styles
@@ -7,7 +7,7 @@ function MainGame() {
   const {
     input,
     suggestions,
-    selectedCharacter, // The selected character's data
+    selectCharacterAndFetchData, // The selected character's data
     characterCharacteristics, // Contains the selected character's characteristics
     comparisonResults, // Contains the comparison results
     setInput,
@@ -21,15 +21,7 @@ function MainGame() {
   };
 
   const handleGuess = (suggestion) => {
-    selectCharacter(suggestion);
-
-    // Ensure characterCharacteristics and comparisonResults are available before adding the guess
-    if (characterCharacteristics && comparisonResults) {
-      setGuessHistory((prevHistory) => [
-        { characterCharacteristics, comparisonResults }, // Add the new guess at the top
-        ...prevHistory,
-      ]);
-    }
+    selectCharacterAndFetchData(suggestion);
   };
 
   const listSuggestion = (suggestions) => {
@@ -40,6 +32,15 @@ function MainGame() {
     ));
   };
 
+
+  useEffect(() => {
+    // This effect will run every time the selected character or results change, ensuring a new guess is added.
+    if (characterCharacteristics && comparisonResults) {
+      const newGuess = { characterCharacteristics, comparisonResults };
+      setGuessHistory((prevHistory) => [...prevHistory, newGuess]);
+    }
+  }, [characterCharacteristics, comparisonResults]); // Run when these change
+  
   return (
     <div className="game-container">
       <div className="GameBox">
