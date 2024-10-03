@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Background color for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button-container {
+    position: relative;
+    display: inline-block; /* To contain the button and the graph background */
+}
+
+.sf-button {
+    background-color: #ffab00; /* Street Fighter 6 button color */
+    color: #fff; /* Button text color */
+    border: 3px solid #000; /* Button border */
+    padding: 15px 30px; /* Button padding */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Font weight */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 5px; /* Button rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* Needed for absolute positioning of the graph background */
+    overflow: hidden; /* Hide overflow to prevent background from showing outside */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.graph-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.1) 0,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+    ),
+    repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+
+.sf-button:hover {
+    background-color: #ff9100; /* Darker button color on hover */
+}
+
+.sf-button:hover + .graph-background {
+    opacity: 1; /* Show graph background on hover */
+}

@@ -99,7 +99,6 @@ export default function App() {
     }, [checkAuth]);
     return (
         <div>
-
                 <RouterProvider router={router} />
         </div>
 

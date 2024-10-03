@@ -11,11 +11,24 @@ export const getAllChars = async (req, res) => {
     }
 }
 
+export const getListChars = async (req, res) => {
+    const { name } = req.query;
+
+    try {
+        const regex = new RegExp(`^${name}`, 'i');
+        const chars = await CharacterModel.find({ name: regex });
+        const charNames = chars.map(char => char.name)
+        res.json({ names: charNames })
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 export const getCharOfTheDay = async (req, res) => {
     try {
         // Check for the character of the day document
         let characterOfTheDay = await CharOfTheDayModel.findOne();
-        
+
         // total number of characters
         const totalCharacters = await CharacterModel.countDocuments();
 
@@ -33,7 +46,7 @@ export const getCharOfTheDay = async (req, res) => {
         const availableCharacters = await CharacterModel.find({
             _id: { $nin: characterOfTheDay.prevcharacter }
         });
-        
+
         // No available characters
         if (availableCharacters.length === 0) {
             return res.status(400).json({ message: "No available characters." });
@@ -85,6 +98,18 @@ export const compareChar = async (req, res) => {
         res.json(comparison);
     } catch (error) {
         console.error('Error comparing characters:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const getCharacter = async (req, res) => {
+    // Use req.query to get the name parameter
+    const { name } = req.body; // Change from req.body to req.query
+    try {
+        const char = await CharacterModel.findOne({ name: name }).select('-special_moves -emoji -theme_song -_id');
+        res.json(char); // Send back the character data
+    } catch (error) {
+        console.error('Error retrieving character:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };

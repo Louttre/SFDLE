@@ -1,0 +1,58 @@
+/* Basic styling for the grid of squares */
+.square-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .square {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .square-content {
+    font-size: 16px;
+  }
+  
+  .animate__flipInY {
+    animation: flipInY 0.5s ease-in-out;
+  }
+  
+  .square-good {
+    background-color: #28a745; /* Green for correct */
+  }
+  
+  .square-bad {
+    background-color: #dc3545; /* Red for incorrect */
+  }
+  
+  .square-partial {
+    background-color: #ffc107; /* Yellow for partial */
+  }
+  
+  .square-inferior {
+    background-color: #17a2b8; /* Blue for inferior */
+  }
+  
+  /* Champion image */
+  .square img {
+    border-radius: 10px;
+  }
+  
+  /* Flex layout for image and content */
+  .classic-answer {
+    margin-bottom: 20px;
+  }
+  
+  @keyframes flipInY {
+    from {
+      transform: rotateY(-180deg);
+    }
+    to {
+      transform: rotateY(0);
+    }
+  }
+  

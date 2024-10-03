@@ -10,7 +10,7 @@ import cors from 'cors';
 dotenv.config({ path: './config/.env' });
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL, // The allowed origin for your frontend
+  origin: process.env.CLIENT_URL, // The allowed origin the frontend
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   allowedHeaders: ['sessionId', 'Content-Type'], // Specify allowed headers
   exposedHeaders: ['sessionId'], // Headers that can be exposed to the client
