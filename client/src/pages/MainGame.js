@@ -3,6 +3,18 @@ import CharacterSquares from '../components/characterSquares'; // Import Charact
 import useCharacterStore from '../store/gameStore'; // Import Zustand store
 import './MainGame.css'; // Import styles
 
+// Custom Key Component for personalized labels/icons/etc.
+function CustomKey({ label, tooltip }) {
+  return (
+    <div className="key-square">
+      <div className="key-content" data-tooltip={tooltip}>
+        {<span className="fields">{label}</span>}
+        <hr className="hr" />
+      </div>
+    </div>
+  );
+}
+
 function MainGame() {
   const {
     input,
@@ -32,7 +44,6 @@ function MainGame() {
     ));
   };
 
-
   useEffect(() => {
     // This effect will run every time the selected character or results change, ensuring a new guess is added.
     if (characterCharacteristics && comparisonResults) {
@@ -40,7 +51,7 @@ function MainGame() {
       setGuessHistory((prevHistory) => [...prevHistory, newGuess]);
     }
   }, [characterCharacteristics, comparisonResults]); // Run when these change
-  
+
   return (
     <div className="game-container">
       <div className="GameBox">
@@ -52,19 +63,34 @@ function MainGame() {
         <ul className="listSuggestions">
           {listSuggestion(suggestions)}
         </ul>
+      </div>
 
+      {/* Key Squares - Rendered only once with personalized content */}
+      <div className="key-squares">
+        <div className="square-container">
+          {/* Render each key with custom labels or icons */}
+          <CustomKey label="Character" tooltip="Character's image" />
+          <CustomKey label="Height" tooltip="175cm etc." />
+          <CustomKey label="Weight" tooltip="75kg etc." />
+          <CustomKey label="Birthplace" tooltip="Japan, Russia etc." />
+          <CustomKey label="Genre" tooltip="Male, Female, Unknown" />
+          <CustomKey label="Eye color" tooltip="Red, Blue etc." />
+          <CustomKey label="Fighting Style" tooltip="Ansatsuken, taekwendo etc." />
+          <CustomKey label="First appearance" tooltip="First game appearance" />
         </div>
-        
-        {/* Render each guess in reverse order, with animation */}
-        <div className="guesses-container">
+      </div>
+
+      <div className="guesses-container">
+        <div className="guesses">
           {guessHistory.map((guess, index) => (
             <CharacterSquares
               key={index}
               characterData={guess.characterCharacteristics}
               comparisonResults={guess.comparisonResults}
-              className="animate__animated animate__flipInY" // Play animation for each guess
+              className="animate__animated animate__flipInY"
             />
           ))}
+        </div>
       </div>
     </div>
   );

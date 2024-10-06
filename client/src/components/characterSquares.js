@@ -8,7 +8,7 @@ function CharacterSquares({ characterData, comparisonResults }) {
         {/* Display the character's image */}
         {characterData.image && (
           <div className="square" style={{ flexBasis: 'calc(12.5% - 4px)' }}>
-            <div className="square-content">
+            <div className="square-content-img">
               <div style={{ display: 'flex' }}>
                 <img
                   src={characterData.image}
@@ -30,11 +30,11 @@ function CharacterSquares({ characterData, comparisonResults }) {
             let backgroundColor;
 
             if (comparison === true) {
-              backgroundColor = 'green'; // Exact match
+              backgroundColor = '#28a745'; // Exact match
             } else if (comparison === '~') {
-              backgroundColor = 'yellow'; // Partial match
+              backgroundColor = '#ffc107'; // Partial match
             } else if (comparison === false || comparison === '<' || comparison === '>') {
-              backgroundColor = 'red'; // No match
+              backgroundColor = '#dc3545'; // No match
             }
 
             return (
@@ -46,7 +46,7 @@ function CharacterSquares({ characterData, comparisonResults }) {
                 <div className="square-content">
                   <div style={{ fontSize: '16px' }}>
                     {/* Handle array values like 'eye_color' and 'fighting_style' */}
-                    <span>{`${key}: ${Array.isArray(value) ? value.join(', ') : value}`}</span>
+                    <span>{`${Array.isArray(value) ? value.join(', ') : value}`}</span>
                   </div>
                 </div>
               </div>

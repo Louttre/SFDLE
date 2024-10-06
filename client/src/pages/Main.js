@@ -18,8 +18,8 @@ const Main = () => {
     };
 
     return (
-        <div className="background-container">
-            <div className="background-img">
+        <div className="background-img">
+            <div className="background-container">
                 {/* Conditionally render buttons if no game is selected */}
                 {!selectedGame && (
                     <div className='button-container'>

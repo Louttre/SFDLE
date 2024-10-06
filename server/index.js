@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import { connectDB  } from './db/connectBD.js';
 import authRoutes from './routes/auth.route.js';
 import charRoutes from './routes/char.route.js';
+import willRoutes from './routes/will.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -31,6 +32,7 @@ app
 //routes
 app.use('/api/auth', authRoutes);
 app.use('/api/char', charRoutes);
+app.use('/api/willitkill', willRoutes)
 
 
 //server
