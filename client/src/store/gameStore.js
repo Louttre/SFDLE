@@ -4,7 +4,6 @@ import axios from 'axios';
 const API_URL = "http://localhost:3000/api/char";
 axios.defaults.withCredentials = true;
 
-
 // Zustand store for managing character-related state
 const useCharacterStore = create((set) => ({
     input: '',
@@ -19,7 +18,6 @@ const useCharacterStore = create((set) => ({
         if (input.length > 0) {
             axios.get(`${API_URL}/list-char?name=${input}`)
                 .then(response => {
-
                     set({ suggestions: response.data.names });
                 })
                 .catch(err => {
@@ -28,6 +26,11 @@ const useCharacterStore = create((set) => ({
         } else {
             set({ suggestions: [] });
         }
+    },
+
+    // Action to clear the input
+    clearInput: () => {
+        set({ input: '', suggestions: [] }); // Clear both input and suggestions
     },
 
     // Combined action to select a character and fetch both characteristics and comparison results

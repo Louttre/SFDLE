@@ -26,7 +26,7 @@ const useWillItKillStore = create((set) => ({
         }
     },
     useranswer: async (guess) => {
-        await axios.post(`${API_URL}/compare`)
+        await axios.post(`${API_URL}/compare`, { answer: guess })
             .then(response => {
                 set({answer: response.data})
             })

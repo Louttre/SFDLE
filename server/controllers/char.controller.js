@@ -1,5 +1,7 @@
 import { CharacterModel } from '../models/char.model.js';
 import { CharOfTheDayModel } from '../models/charoftheday.model.js';
+import { EmojiOfTheDayModel } from '../models/emojioftheday.model.js';
+import { BlindOfTheDayModel } from '../models/blindoftheday.model.js';
 import { eyeCompare, fightingStyleCompare, heightWeightCompare } from '../utils/compareFunc.js';
 
 export const getAllChars = async (req, res) => {
@@ -113,3 +115,170 @@ export const getCharacter = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+export const getEmojiOfTheDay = async (req, res) => {
+    try {
+        // Check for the character of the day document
+        let characterOfTheDay = await EmojiOfTheDayModel.findOne();
+
+        // total number of characters
+        const totalCharacters = await CharacterModel.countDocuments();
+
+        // If no document exists, create a new one
+        if (!characterOfTheDay) {
+            characterOfTheDay = new EmojiOfTheDayModel();
+        }
+
+        // Check if all the characters have been selected
+        if (characterOfTheDay.prevcharacter.length >= totalCharacters) {
+            characterOfTheDay.prevcharacter = []; // Reset the previous characters
+        }
+
+        // Fetch a character that is not in prevcharacter
+        const availableCharacters = await CharacterModel.find({
+            _id: { $nin: characterOfTheDay.prevcharacter }
+        }).select('-special_moves -height -weight -birthplace -genre -eye_color -fighting_style -image -first_appearance -theme_song');
+
+        // No available characters
+        if (availableCharacters.length === 0) {
+            return res.status(400).json({ message: "No available characters." });
+        }
+
+        // Select a random character
+        const randomCharacter = availableCharacters[Math.floor(Math.random() * availableCharacters.length)];
+
+        // Update characterOfTheDay with the new character
+        characterOfTheDay.character = randomCharacter._id; // Update the character field
+        characterOfTheDay.prevcharacter.push(randomCharacter._id); // Add to the previous character array
+
+        await characterOfTheDay.save(); // Save the updated document
+
+        // Return the character of the day
+        return res.json(randomCharacter);
+    } catch (error) {
+        console.error('Error selecting character of the day:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const getEmoji = async (req, res) => {
+    try {
+        const characterIdOfTheDay = await EmojiOfTheDayModel.findOne();
+        const characterOfTheDay = await CharacterModel.findById(characterIdOfTheDay.character).select('emoji');
+
+        res.json(characterOfTheDay);
+    } catch (error) {
+        console.error('Error retrieving emoji:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const compareEmoji = async (req, res) => {
+    try {
+        const { guess } = req.body;
+
+        // Fetch the character of the day and the guessed character
+        const characterIdOfTheDay = await EmojiOfTheDayModel.findOne();
+
+        const characterOfTheDay = await CharacterModel.findById(characterIdOfTheDay.character);
+        const guessedCharacter = await CharacterModel.findOne({
+            name: guess
+        });
+        console.log(characterOfTheDay);
+ 
+        if (!characterOfTheDay || !guessedCharacter) {
+            return res.status(404).json({ message: 'Character not found' });
+        }
+
+        // Compare the characters
+        const comparison = characterOfTheDay.name === guessedCharacter.name;
+        res.json(comparison);
+    } catch (error) {
+        console.error('Error comparing characters:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+export const getBlind = async (req, res) => {
+    try {
+        const characterIdOfTheDay = await BlindOfTheDayModel.findOne();
+        const characterOfTheDay = await CharacterModel.findById(characterIdOfTheDay.character).select('theme_song');
+
+        res.json(characterOfTheDay);
+    } catch (error) {
+        console.error('Error retrieving emoji:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const getBlindOfTheDay = async (req, res) => {
+    try {
+        // Check for the character of the day document
+        let characterOfTheDay = await BlindOfTheDayModel.findOne();
+
+        // total number of characters
+        const totalCharacters = await CharacterModel.countDocuments();
+
+        // If no document exists, create a new one
+        if (!characterOfTheDay) {
+            characterOfTheDay = new BlindOfTheDayModel();
+        }
+
+        // Check if all the characters have been selected
+        if (characterOfTheDay.prevcharacter.length >= totalCharacters) {
+            characterOfTheDay.prevcharacter = []; // Reset the previous characters
+        }
+
+        // Fetch a character that is not in prevcharacter
+        const availableCharacters = await CharacterModel.find({
+            _id: { $nin: characterOfTheDay.prevcharacter },
+            theme_song: { $ne: '' }  // Ensure the theme_song is not an empty string
+        }).select('-special_moves -height -weight -birthplace -genre -eye_color -fighting_style -image -first_appearance -emoji');
+
+        // No available characters
+        if (availableCharacters.length === 0) {
+            return res.status(400).json({ message: "No available characters." });
+        }
+
+        // Select a random character
+        const randomCharacter = availableCharacters[Math.floor(Math.random() * availableCharacters.length)];
+
+        // Update characterOfTheDay with the new character
+        characterOfTheDay.character = randomCharacter._id; // Update the character field
+        characterOfTheDay.prevcharacter.push(randomCharacter._id); // Add to the previous character array
+
+        await characterOfTheDay.save(); // Save the updated document
+
+        // Return the character of the day
+        return res.json(randomCharacter);
+    } catch (error) {
+        console.error('Error selecting blind of the day:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const compareBlind = async (req, res) => {
+    try {
+        const { guess } = req.body;
+
+        // Fetch the character of the day and the guessed character
+        const characterIdOfTheDay = await BlindOfTheDayModel.findOne();
+
+        const characterOfTheDay = await CharacterModel.findById(characterIdOfTheDay.character);
+        const guessedCharacter = await CharacterModel.findOne({
+            name: guess
+        });
+        console.log(characterOfTheDay);
+ 
+        if (!characterOfTheDay || !guessedCharacter) {
+            return res.status(404).json({ message: 'Character not found' });
+        }
+
+        // Compare the characters
+        const comparison = characterOfTheDay.name === guessedCharacter.name;
+        res.json(comparison);
+    } catch (error) {
+        console.error('Error comparing characters:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
