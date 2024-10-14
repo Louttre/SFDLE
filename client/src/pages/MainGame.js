@@ -48,7 +48,7 @@ function MainGame() {
     useEffect(() => {
         if (characterCharacteristics && comparisonResults) {
             const newGuess = { characterCharacteristics, comparisonResults };
-            setGuessHistory((prevHistory) => [...prevHistory, newGuess]);
+            setGuessHistory((prevHistory) => [ ...prevHistory, newGuess]);
         }
     }, [characterCharacteristics, comparisonResults]);
 

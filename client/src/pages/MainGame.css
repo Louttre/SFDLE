@@ -90,20 +90,10 @@
   flex-direction: column; /* Stack guesses vertically */
   align-items: center; /* Center align guesses */
   width: 100%; /* Full width for guesses */
-  flex-grow: 1; /* Allow this container to grow */
   overflow-y: auto; /* Enable scrolling when there are many guesses */
   box-sizing: border-box;
 }
 
-/* Make each guess occupy full width and keep a margin */
-.guesses {
-  width: 100%; /* Make each guess take full width */
-}
-
-/* Styling for each guess */
-.guesses > * {
-  margin-bottom: 10px; /* Space between guesses */
-}
 .square-container {
   display: flex;
   flex-wrap: wrap;
@@ -113,7 +103,7 @@
 
 /* Ensuring consistent size for all squares (key and guess) */
 .key-square {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   text-align: center;
   width: 150px;
   height: 150px;
@@ -164,13 +154,9 @@
   height: 100%;
 }
 
-@keyframes flipInY {
-  from {
-    transform: perspective(400px) rotateY(90deg);
-    opacity: 0;
-  }
-  to {
-    transform: perspective(400px) rotateY(0);
-    opacity: 1;
-  }
+.guesses {
+  display: flex;
+  flex-direction: column-reverse; /* Reverse order to insert guesses at the top */
+  width: 100%;
+  gap: 10px; /* Optional: Add spacing between guesses */
 }

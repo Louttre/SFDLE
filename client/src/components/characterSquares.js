@@ -1,5 +1,6 @@
 import React from 'react';
 import '../pages/CharacterSquares.css'; // Add corresponding CSS styles
+import 'animate.css';
 
 function CharacterSquares({ characterData, comparisonResults }) {
   return (
@@ -36,12 +37,24 @@ function CharacterSquares({ characterData, comparisonResults }) {
             } else if (comparison === false || comparison === '<' || comparison === '>') {
               backgroundColor = '#dc3545'; // No match
             }
+            
+            // Define the radial gradient
+            const gradientBackground = `radial-gradient(circle, ${backgroundColor} 60%, rgba(0, 0, 0, 1) 250%)`;
+
+            // Add a delay based on the index to stagger the animation
+            const animationDelay = `${index * 0.4}s`; // Delays each square by 0.2s
 
             return (
               <div
                 key={index}
-                className={`square animate__animated animate__flipInY`}
-                style={{ flexBasis: 'calc(12.5% - 4px)', backgroundColor }}
+                className="square animate__animated animate__flipInY"
+                style={{
+                  flexBasis: 'calc(12.5% - 4px)',
+                  backgroundColor,
+                  background: gradientBackground,
+                  animationDelay, // Apply the delay for the animation
+                  WebkitAnimationDelay: animationDelay, // Ensure it works in all browsers
+                }}
               >
                 <div className="square-content">
                   <div style={{ fontSize: '16px' }}>
