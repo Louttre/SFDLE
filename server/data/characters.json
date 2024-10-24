@@ -49,8 +49,8 @@
         "weight": "57kg",
         "birthplace": "South Korea",
         "genre": "Female",
-        "fighting_style": ["Taekwondo"],
         "eye_color":["Purple"],
+        "fighting_style": ["Taekwondo"],
         "special_moves": [
             "Sakkai Fuhazan",
             "Feng Shui Engine",

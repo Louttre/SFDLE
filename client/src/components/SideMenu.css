@@ -1,0 +1,181 @@
+/* Sidebar styles */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 60px;
+    /* Only show the hamburger button when closed */
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    transition: width 0.3s ease;
+    /* Smooth transition when opening */
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-left: 1px solid rgb(243, 139, 139); /* Add white border to the sidebar */
+}
+
+/* Sidebar in open state */
+.side-menu.open {
+    width: 400px;
+    /* Expand when open */
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40px;
+    width: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Hamburger button lines */
+.hamburger-btn .line {
+    width: 30px;
+    height: 3px;
+    background-color: rgb(243, 125, 125);
+    border-radius: 2px;
+}
+
+/* Close button (visible when the sidebar is open) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    font-size: 2rem;
+    color: rgb(235, 122, 122);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    scale: 1.2;
+}
+
+/* Overlay that appears when sidebar is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1100; /* Higher z-index than the overlay */
+}
+
+.hamRotate.active {
+    transform: rotate(45deg);
+}
+
+.hamRotate180.active {
+    transform: rotate(180deg);
+}
+
+.line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: #ee7373;
+    stroke-width: 5.5;
+    stroke-linecap: round;
+}
+
+.ham8 .top {
+    stroke-dasharray: 40 160;
+}
+
+.ham8 .middle {
+    stroke-dasharray: 40 142;
+    transform-origin: 50%;
+    transition: transform 400ms;
+}
+
+.ham8 .bottom {
+    stroke-dasharray: 40 85;
+    transform-origin: 50%;
+    transition: transform 400ms, stroke-dashoffset 400ms;
+}
+
+.ham8.active .top {
+    stroke-dashoffset: -64px;
+}
+
+.ham8.active .middle {
+    stroke-dashoffset: -20px;
+    transform: rotate(90deg);
+}
+
+.ham8.active .bottom {
+    stroke-dashoffset: -64px;
+}
+
+/* Trophy Container */
+.trophy-container {
+    position: absolute;
+    top: 80px; /* Adjust as needed */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Trophy Closed State */
+.trophy-container.trophy-closed {
+
+    opacity: 1;
+}
+
+/* Trophy Open State */
+.trophy-container.trophy-open {
+    transform: translatex(-260%) scale(1); /* Normal size when open */
+    opacity: 1;
+}
+
+/* Trophy Image */
+.trophy {
+    margin-top: 3rem;
+    width: 60px; /* Adjust size as needed */
+    height: 50px;
+    transition: width 0.3s ease, height 0.3s ease;
+    cursor: pointer; /* Optional: change cursor on hover */
+}
+
+/* Hover Effect for Trophy */
+.trophy:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+.logout{
+    margin-top: 2rem;
+    filter: invert(39%) sepia(96%) saturate(6790%) hue-rotate(350deg) brightness(121%) contrast(90%);
+    transition: width 0.3s ease, height 0.3s ease;
+    width: 60px;
+    height: 60px;
+    cursor: pointer; /* Optional: change cursor on hover */
+}
+
+/* Hover Effect for Trophy */
+.logout:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}

@@ -7,6 +7,10 @@ const emojiOfTheDaySchema = new mongoose.Schema({
         ref: 'Character', // Reference to the Character model
         required: false
     },
+    date: {
+        type: Date,
+        required: true
+    },
     prevcharacter: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Character', // Reference to the Characters model

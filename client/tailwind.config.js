@@ -5,7 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
-  },
-  plugins: [],
+    fontFamily: {
+      'sans': ['Roboto'],
+      'roboto': ['Roboto', 'sans-serif'],
+    },
+    plugins: [],
+  }
 }
-

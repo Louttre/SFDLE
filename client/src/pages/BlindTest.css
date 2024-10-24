@@ -1,0 +1,312 @@
+.blind-test-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #312727;
+    border-radius: 10px;
+    color: white;
+    border: 2px solid #f38888;
+    overflow: hidden;
+}
+
+.visualizer-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blind-test-title {
+    font-family: 'Bebas Neue', sans-serif;
+    /* Bold fighting game aesthetic */
+    font-size: 28px;
+    color: #f06c6c;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    /* Make the title uppercase */
+}
+
+.player-controls {
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.play-pause-button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #f38888;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.play-pause-button:hover {
+    background-color: #eb2525;
+}
+
+/* Styling for progress and volume sliders */
+.progress-slider,
+.volume-slider {
+    -webkit-appearance: none;
+    /* Remove default styling */
+    appearance: none;
+    width: 80%;
+    margin: 10px 0;
+    height: 8px;
+    border-radius: 5px;
+    background: #f06c6c;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f38888;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.progress-slider::-webkit-slider-thumb:hover,
+.volume-slider::-webkit-slider-thumb:hover {
+    background: #eb2525;
+}
+
+.progress-slider:focus,
+.volume-slider:focus {
+    outline: none;
+    background: #ff7e7e;
+}
+
+.guess-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.guesses {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.guess-item {
+    border: 2px solid white;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 15rem;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    border-radius: 3px;
+    /* Optional: rounded corners for aesthetics */
+    overflow: hidden;
+}
+
+.guess-item.correct {
+    background-color: rgb(54, 207, 54);
+    border: 1px solid #00ff00;
+}
+
+.guess-item.incorrect {
+    background-color: rgb(155, 19, 19);
+    border: 1px solid #ff0000;
+}
+
+.guess-item-name {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-style: normal;
+    margin-left: 2rem;
+    /* Space between image and name */
+}
+
+.guess-item-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    /* Rounded corners for images */
+}
+
+/* Input and Suggestions */
+.input-section {
+    margin-bottom: 20px;
+}
+
+.listSuggestions {
+    list-style: none;
+    /* Remove bullet points */
+    padding: 0;
+    margin-top: 10px;
+    /* Space above suggestions */
+}
+
+.suggestion-item {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    background-color: #f0f0f0;
+    margin-bottom: 5px;
+    /* Space between suggestions */
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+    background-color: #e0e0e0;
+    /* Hover effect */
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Answer Box */
+.answer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    /* Center the answer box */
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    /* Limit maximum width */
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: rgb(5, 139, 0);
+    border: 2px solid rgb(0, 199, 17);
+    border-radius: 10px;
+    /* Rounded corners */
+}
+
+.answer {
+    text-align: center;
+}
+
+.congratulations {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.answer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.answer-item-image {
+
+    border: 2px solid white;
+    /* Adjust the color and width as desired */
+    border-radius: 10px;
+    /* Optional: Adds rounded corners */
+    /* Optional: Add padding or box-shadow for additional styling */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    transform-style: preserve-3d;
+    /* Enable 3D transformations */
+    will-change: transform;
+    /* Hint for better performance */
+    cursor: pointer;
+    /* Change cursor to indicate interactivity */
+
+}
+
+.answer-item-image:hover {
+    transform: scale(1.3) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+
+.answer-text {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7),
+        6px 6px 12px rgba(0, 0, 0, 0.4);
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: center;
+    margin-left: 20px;
+    transition: text-shadow 0.3s ease;
+}
+
+/* Loading Spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    /* Light grey */
+    border-top: 8px solid #f38888;
+    /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+
+    .guess-item,
+    .answer-box {
+        width: 100%;
+    }
+
+    .answer-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .answer-item-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .controls,
+    .player-controls {
+        width: 100%;
+    }
+
+    .progress-slider,
+    .volume-slider {
+        width: 100%;
+    }
+}

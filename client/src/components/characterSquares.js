@@ -2,7 +2,7 @@ import React from 'react';
 import '../pages/CharacterSquares.css'; // Add corresponding CSS styles
 import 'animate.css';
 
-function CharacterSquares({ characterData, comparisonResults }) {
+function CharacterSquares({ characterData, comparisonResults, className }) {
   return (
     <div className="classic-answer">
       <div className="square-container">
@@ -12,7 +12,7 @@ function CharacterSquares({ characterData, comparisonResults }) {
             <div className="square-content-img">
               <div style={{ display: 'flex' }}>
                 <img
-                  src={characterData.image}
+                  src={`${process.env.PUBLIC_URL}/img/characters-square/${characterData.image}`}
                   alt={characterData.name}
                   width="100%"
                   height="100%"
@@ -47,7 +47,7 @@ function CharacterSquares({ characterData, comparisonResults }) {
             return (
               <div
                 key={index}
-                className="square animate__animated animate__flipInY"
+                className={`square ${className ? "animate__animated animate__flipInY" : ""}`}
                 style={{
                   flexBasis: 'calc(12.5% - 4px)',
                   backgroundColor,

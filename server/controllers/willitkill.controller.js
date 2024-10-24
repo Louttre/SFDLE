@@ -24,48 +24,78 @@ export const getAnswer = async (req, res) => {
 }
 
 // Define the Will It Kill of the Day function
-export const getWillItKillOfTheDay = async (req, res) => {
+export const selectWillItKillOfTheDay = async () => {
     try {
-        // Check for the Will It Kill of the Day document
-        let willItKillOfTheDay = await WillItKillOfTheDayModel.findOne({}); // Adjust the query as needed
-
-        // total number of videos (this assumes you have a separate video model or collection)
-        const totalVideos = await WillItKillModel.countDocuments();
-
-        // If no document exists, create a new one
-        if (!willItKillOfTheDay) {
-            willItKillOfTheDay = new WillItKillOfTheDayModel();
-        }
-
-        // Check if all video IDs have been selected
-        if (willItKillOfTheDay.prevvideos && willItKillOfTheDay.prevvideos.length >= totalVideos) {
-            willItKillOfTheDay.prevvideos = []; // Reset the previous videos if all have been selected
-        }
-
-        // Fetch videos that are not in prevVideos
-        const availableVideos = await WillItKillModel.find({
-            _id: { $nin: willItKillOfTheDay.prevvideos }
-        });
-
-        // No available videos
-        if (availableVideos.length === 0) {
-            return res.status(400).json({ message: "No available videos." });
-        }
-
-        // Select a random video
-        const randomVideo = availableVideos[Math.floor(Math.random() * availableVideos.length)];
-
-        // Update willItKillOfTheDay with the new video
-        willItKillOfTheDay.video_id = randomVideo._id; // Update the video_id field
-        willItKillOfTheDay.prevvideos = willItKillOfTheDay.prevvideos || []; // Ensure prevVideos is initialized
-        willItKillOfTheDay.prevvideos.push(randomVideo._id); // Add to the previous video array
-
-        await willItKillOfTheDay.save(); // Save the updated document
-
-        // Return the Will It Kill of the Day
-        return res.json(randomVideo);
+      // Fetch the existing document
+      let willItKillDoc = await WillItKillOfTheDayModel.findOne();
+  
+      // If no document exists, create one
+      if (!willItKillDoc) {
+        willItKillDoc = new WillItKillOfTheDayModel();
+      }
+  
+      // Get total number of videos
+      const totalVideos = await WillItKillModel.countDocuments();
+  
+      // Initialize prevvideos if undefined
+      if (!willItKillDoc.prevvideos) {
+        willItKillDoc.prevvideos = [];
+      }
+  
+      // Check if all videos have been used
+      if (willItKillDoc.prevvideos.length >= totalVideos) {
+        willItKillDoc.prevvideos = []; // Reset the previous videos
+      }
+  
+      // Fetch videos not in prevvideos
+      const availableVideos = await WillItKillModel.find({
+        _id: { $nin: willItKillDoc.prevvideos },
+      });
+  
+      // No available videos
+      if (availableVideos.length === 0) {
+        throw new Error('No available videos to select.');
+      }
+  
+      // Select a random video
+      const randomVideo =
+        availableVideos[Math.floor(Math.random() * availableVideos.length)];
+  
+      // Update the document with the new video
+      willItKillDoc.video_id = randomVideo._id;
+  
+      // Add selected video to prevvideos
+      willItKillDoc.prevvideos.push(randomVideo._id);
+  
+      // Update the date (optional)
+      willItKillDoc.date = new Date();
+  
+      // Save the document
+      await willItKillDoc.save();
+  
+      console.log('Will It Kill of the day updated successfully.');
+  
     } catch (error) {
-        console.error('Error selecting Will It Kill of the Day:', error);
-        res.status(500).json({ message: 'Internal server error' });
+      console.error('Error selecting Will It Kill of the day:', error);
     }
-};
+  };
+
+  export const getWillItKillOfTheDay = async (req, res) => {
+    try {
+      // Fetch the existing document
+      const willItKillDoc = await WillItKillOfTheDayModel.findOne();
+  
+      if (!willItKillDoc || !willItKillDoc.video_id) {
+        return res.status(404).json({ message: 'Will It Kill of the day not found.' });
+      }
+  
+      // Fetch the video details
+      const video = await WillItKillModel.findById(willItKillDoc.video_id);
+  
+      res.json(video);
+    } catch (error) {
+      console.error('Error fetching Will It Kill of the day:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  

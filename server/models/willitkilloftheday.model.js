@@ -7,6 +7,11 @@ const WillItKillOfTheDaySchema = new mongoose.Schema({
         ref: 'willitkill', // Reference to the Character model
         required: false
     },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
     prevvideos: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'willitkill', // Reference to the Characters model
@@ -14,4 +19,4 @@ const WillItKillOfTheDaySchema = new mongoose.Schema({
     }
 })
 
-export const WillItKillOfTheDayModel = mongoose.model('WillItKillOfTheDay', WillItKillOfTheDaySchema);
+export const WillItKillOfTheDayModel = mongoose.model('willitkilloftheday', WillItKillOfTheDaySchema);

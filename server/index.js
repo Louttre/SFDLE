@@ -5,8 +5,15 @@ import { connectDB  } from './db/connectBD.js';
 import authRoutes from './routes/auth.route.js';
 import charRoutes from './routes/char.route.js';
 import willRoutes from './routes/will.route.js';
+import achievRoutes from './routes/achiev.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import cron from 'node-cron';
+
+import { selectCharacterOfTheDay } from './controllers/char.controller.js';
+import { selectBlindOfTheDay } from './controllers/char.controller.js';
+import { selectEmojiOfTheDay } from './controllers/char.controller.js';
+import { selectWillItKillOfTheDay } from './controllers/willitkill.controller.js';
 
 dotenv.config({ path: './config/.env' });
 
@@ -32,8 +39,21 @@ app
 //routes
 app.use('/api/auth', authRoutes);
 app.use('/api/char', charRoutes);
-app.use('/api/willitkill', willRoutes)
+app.use('/api/willitkill', willRoutes);
+app.use('/api/achiev', achievRoutes);
 
+// Schedule the task to run at midnight UTC every day
+cron.schedule('* * * * *', async () => {
+  try {
+    await selectCharacterOfTheDay();
+    await selectBlindOfTheDay();
+    await selectEmojiOfTheDay();
+    await selectWillItKillOfTheDay();
+    console.log('Character of the day selected successfully at midnight UTC');
+  } catch (error) {
+    console.error('Error selecting character of the day:', error);
+  }
+});
 
 //server
 app.listen(process.env.PORT, () => {

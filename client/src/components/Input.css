@@ -1,0 +1,45 @@
+/* Wrapper for the input with icon */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Icon inside the input */
+.input-icon {
+    position: absolute;
+    top: 50%; /* Move the icon to the middle of the container */
+    left: 10px; /* Distance from the left side */
+    transform: translateY(-50%); /* Adjust to truly center it vertically */
+    pointer-events: none; /* Make the icon non-clickable */
+}
+/* Input field styling */
+.custom-input {
+    width: 100%;
+    padding: 12px 10px; /* Padding for the input field */
+    padding-left: 40px; /* Add padding to accommodate the icon */
+    font-size: 18px;
+    border: none; /* Remove default border */
+    border-bottom: 2px solid #ff7e7e; /* Red/pink bottom border */
+    background-color: transparent; /* Transparent background */
+    color: white; /* White text color */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    caret-color: #ffffff; /* White caret (text cursor) */
+}
+
+/* Input field hover and focus */
+.custom-input:focus {
+    border-bottom-color: #e49292; /* Lighter pink border on focus */
+    outline: none; /* Remove default outline */
+    background-color: #3f3232c2; /* Darker background when focused */
+    border-radius: 4px; /* Rounded border on focus */
+}
+
+.custom-input:hover {
+    border-bottom-color: #ffffff; /* White bottom border on hover */
+}
+
+/* Placeholder styling */
+.custom-input::placeholder {
+    color: #e7a8a8; /* Light pink for placeholder text */
+    font-style: italic; /* Italic style for placeholder */
+}

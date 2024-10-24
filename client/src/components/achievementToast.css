@@ -1,0 +1,32 @@
+/* src/components/AchievementToast.css */
+
+.achievement-toast {
+    padding: 15px;
+    background-color: #ffffff;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .achievement-toast:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .achievement-toast strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .achievement-toast p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .achievement-toast small {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  

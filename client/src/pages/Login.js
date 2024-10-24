@@ -1,82 +1,96 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, LockKeyhole, Loader } from "lucide-react";
-import Input from "../components/input";
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Add useNavigate for redirection
+import "./Loginsfdle.css";
 import { useAuthStore } from '../store/authStore';
 
-const Login = () => {
+export const Loginsfdle = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { login, isLoading, error } = useAuthStore();
+    const navigate = useNavigate(); // Create navigate function
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        await login(email, password);
+        try {
+            await login(email, password);
+            // Redirect to the main page or any other after successful login
+            navigate('/achievements'); // Or any other route you want
+        } catch (err) {
+            // Handle the error if needed
+            console.error("Login failed:", err);
+        }
     };
 
-
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden'
-        >
-            <div className="p-8">
-                <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-sky-400 to-blue-500 text-transparent bg-clip-text">
-                    Welcome Back
-                </h2>
-
-                <form
-                    onSubmit={handleLogin}
-                >
-                    <Input
-                        icon={Mail}
-                        type='text'
-                        placeholder='Email Adress'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        icon={LockKeyhole}
-                        type='text'
-                        placeholder='Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <div className='flex items-center mb-6'>
-                        <Link to='/forgot-password' className='text-sm text-cyan-400 hover:underline'>
-                            Forgot password?
-                        </Link>
+        <div id="overlay" className="absolute h-full w-full max-w-[400px] p-2 bg-black/60 backdrop-blur-lg flex items-center justify-center">
+            <div id="frame2" className="relative w-full px-8 py-2 flex flex-col ">
+                <div id="frame4" className="relative w-full flex flex-col gap-8 mx-auto">
+                    <div id="connexion" className="text-white text-left text-[32px] font-roboto font-bold">
+                        CONNEXION
                     </div>
-                    {error && <p className='text-red-500 font-semibold mt-2 text-sm'>{error}</p>}
-                    <motion.button
-                        className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-sky-600 text-white 
-						font-bold rounded-lg shadow-lg hover:from-blue-600
-						hover:to-sky-800 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2
-						 focus:ring-offset-gray-900 transition-duration-100'
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.98 }}
-                        type='submit'
-                        disabled={isLoading}
-                    >
-                        {isLoading ? <Loader className='w-6 h-6 animate-spin mx-auto' /> : "Login"}
-                    </motion.button>
-                </form>
 
+                    <form id="frame5" className="flex flex-col gap-8" onSubmit={handleLogin}>
+                        <div id="frame6" className="flex flex-col gap-2">
+                            <label htmlFor="email" className="text-white text-[20px] font-inter">
+                                EMAIL
+                            </label>
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="Entrez votre email"
+                                className="text-white bg-transparent border-b border-white focus:outline-none"
+                                autoComplete="on"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div id="frame7" className="flex flex-col gap-2">
+                            <label htmlFor="password" className="text-white text-[20px] font-inter">
+                                MOT DE PASSE
+                            </label>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Entrez votre mot de passe"
+                                className="text-white bg-transparent border-b border-white focus:outline-none"
+                                value={password}
+                                autoComplete="on"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        
+                        {error && (
+                            <div className="text-red-500 text-sm text-center mt-2">
+                                {error}
+                            </div>
+                        )}
+
+                        <div id="frame3" className="bg-white h-[40px] rounded-[25px] flex justify-center items-center">
+                            <button 
+                                id="connexion2" 
+                                className="text-black text-[20px] font-roboto"
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.98 }}
+                                type='submit'
+                                disabled={isLoading}>
+                                {isLoading ? "Loading..." : "Connexion"}
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="motdepasseoublié?" className="text-white text-center text-[20px] font-roboto">
+                        Forgot Password ?
+                    </div>
+                </div>
+                <div id="pasencoredecompte?s’inscrire" className="text-left text-[16px] mx-auto text-gray-300">
+                    Don't have an account ? <Link className="text-red-300" to="/register">Register</Link>
+                </div>
             </div>
-            <div className='px-8 py-4 bg-neutral-800 bg-opacity-50 flex justify-center'>
-                <p className='text-sm text-gray-400'>
-                    Don't have an account?{" "}
-                    <Link to={"/register"} className='text-cyan-400 hover:underline'>
-                        Sign Up
-                    </Link>
-                </p>
-            </div>
-        </motion.div>
+        </div>
+    );
+};
 
-    )
-}
-
-export default Login;
+export default Loginsfdle;

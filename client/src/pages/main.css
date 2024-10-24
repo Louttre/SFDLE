@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     height: 100vh; /* Full screen height */
-    display:flex;
+    display: flex;
     overflow: hidden; /* Change to hidden to prevent overflow */
     display: flex; /* Enable flexbox */
     justify-content: center; /* Center content horizontally */
@@ -11,12 +11,15 @@
 }
 
 .background-img {
+    position: absolute;
     height: 100%;
     width: 100%;
+    top: 0;
+    left: 0;
     justify-content: space-between;
     align-items: center;
     background-image: url("../img/backgrounds/mainbg.png");
-    background-size: cover; /* Use contain to show the entire image */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex; /* Enable flexbox */
@@ -25,28 +28,36 @@
 }
 
 .button-container {
+    position: relative;
     display: flex; /* Use flexbox for button layout */
     flex-direction: column; /* Stack buttons vertically */
     gap: 32px; /* Space between buttons */
 }
 
-button {
-    padding: 32px 128px; /* Add padding for button size */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Change cursor on hover */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #646464; /* Button background color */
-    color: rgb(255, 255, 255); /* Button text color */
+.button {
+    width: 300px;               /* Set a fixed width for all buttons */
+    height: 80px;               /* Set a fixed height for all buttons */
+    font-size: 18px;            /* Font size */
+    cursor: pointer;            /* Change cursor on hover */
+    border: none;               /* Remove border */
+    border-radius: 5px;         /* Rounded corners */
+    background-color: #646464;  /* Button background color */
+    color: #fff;                /* Button text color */
     transition: background-color 0.1s; /* Transition for hover effect */
+    text-align: center;         /* Center text horizontally */
+    display: flex;              /* Enable flexbox to align text */
+    justify-content: center;    /* Center content horizontally */
+    align-items: center;        /* Center content vertically */
 }
 
-button:hover {
-    background-color: #c2c2c2; /* Darker blue on hover */
-    color: rgb(75, 75, 75); /* Button text color */
+.button:hover {
+    background-color: #c2c2c2;  /* Darker color on hover */
+    color: #4b4b4b;             /* Change text color */
+    overflow: hidden;           /* Hide any overflow from parallax */
 }
 
-button:active {
-    background-color: rgb(0, 68, 255);
+.button:active {
+    background-color: #0044ff;  /* Different color when active */
     color: white;
+    transform: scale(0.95);     /* Slight scaling effect */
 }

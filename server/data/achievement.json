@@ -1,0 +1,17 @@
+[
+    {
+    "name": "Hello there!",
+    "description": "You have successfully logged in for the first time.",
+    "condition": 1
+    },
+    {
+    "name": "First blood",
+    "description": "You completed one game.",
+    "condition": 1
+    },
+    {
+        "name": "The journey begins",
+        "description": "You completed all games of the day.",
+        "condition": 1
+    }
+]

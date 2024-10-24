@@ -9,43 +9,55 @@
 }
   
 .GameBox {
-  display: flex;
-  flex-direction: column;
+  background-color: #312727; /* Darker blue-gray background */
   padding: 2rem;
-  gap: 1rem;
-  max-width: 28rem; /* Set a maximum width */
-  width: 100%; /* Full width */
-  background-color: rgba(31, 41, 55, 0.5);
-  backdrop-filter: blur(20px);
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 1;
-  margin-bottom: 20px; /* Add space below the game box */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid #f38888; /* Cyan blue border */
+}
+
+/* Title of the game */
+.game-title {
+  font-family: 'Bebas Neue', sans-serif; /* Bold fighting game aesthetic */
+  font-size: 28px;
+  color: #f06c6c;
+  margin-bottom: 20px;
+  text-transform: uppercase; /* Make the title uppercase */
 }
 
 /* Input field styling */
-.input-field {
-    width: 100%; /* w-full */
-    padding-left: 1rem; /* pl-10 */
-    padding-right: 0.75rem; /* pr-3 */
-    padding-top: 0.5rem; /* py-2 */
-    padding-bottom: 0.5rem; /* py-2 */
-    background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 bg-opacity-50 */
-    border-radius: 0.5rem; /* rounded-lg */
-    border: 1px solid rgba(55, 65, 81, 1); /* border-gray-700 */
-    color: white; /* text-white */
-    transition: border-color 0.2s, box-shadow 0.2s; /* transition duration-200 */
+.GameBox .input-field {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: none; /* Remove default border */
+  border-bottom: 2px solid #ff7e7e; /* Cyan blue border only on the bottom */
+  border-radius: 0; /* Remove border radius for a cleaner look */
+  background-color: transparent; /* Transparent background for a clean look */
+  color: white; /* White text color */
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  caret-color: #ffffff; /* Cyan blue caret (cursor) */
 }
 
-::placeholder {
-    color: rgba(156, 163, 175, 1); /* placeholder-gray-400 */
+/* Input field hover and focus */
+.GameBox .input-field:focus {
+  border-bottom-color: #e49292; /* Lighter cyan-blue on focus */
+  outline: none; /* Remove default outline */
+  background-color: #3f3232c2; /* Slightly darker background to indicate focus */
+  border-radius: 4px;
 }
 
-.input-field:focus {
-    border-color: rgba(14, 165, 233, 1); /* focus:border-sky-500 */
-    outline: none; 
-    box-shadow: 0 0 0 2px rgba(6, 182, 212, 1); /* focus:ring-2 focus:ring-cyan-500 */
+.GameBox .input-field::placeholder {
+  color: #e7a8a8; /* Light blue for the placeholder text */
+  font-style: italic; /* Subtle italic style for placeholder */
+}
+
+/* Add hover effect for the input field */
+.GameBox .input-field:hover {
+  border-bottom-color: #ffffff; /* Slightly lighter cyan blue on hover */
 }
 
 /* Instruction text styling */
@@ -58,30 +70,42 @@
 .listSuggestions {
   list-style-type: none;
   padding: 0;
-  max-height: 200px; /* Limit height of the suggestion box */
-  overflow-y: auto; /* Scroll if too many suggestions */
+  margin-top: 10px;
+  max-height: 200px; /* Limit the height of the list */
+  overflow-y: auto; /* Scroll if the list is too long */
+  border-radius: 5px;
+
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
 
+/* Suggestion items */
 .suggestion-item {
   display: flex;
-  align-items: center;
-  cursor: pointer;
+  align-items: center; /* Align image and text horizontally */
   padding: 10px;
-  margin: 5px;
-  background-color: #f0f0f0;
+  background-color: #000000; /* Dark background for each suggestion */
+  margin-bottom: 5px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  color: #d0e4f5; /* Light blue-gray text color */
 }
 
+/* Suggestion item hover effect */
 .suggestion-item:hover {
-  background-color: #e0e0e0;
+  background-color: #f08282; /* Cyan-blue background on hover */
+  color: white; /* White text when hovered */
+  transform: translateY(-3px); /* Slight lift effect on hover */
 }
 
+/* Character image in the suggestion list */
 .suggestion-image {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  border-radius: 50%;
+  width: 40px; /* Set a fixed size for the image */
+  height: 40px; /* Same as width for a square image */
+  border-radius: 50%; /* Rounded image */
+  margin-right: 15px; /* Space between image and name */
+  object-fit: cover; /* Ensure image fits properly */
 }
 
 /* Guesses container styling */
@@ -101,12 +125,22 @@
   justify-content: space-between;
 }
 
+/* Container for key squares using CSS Grid */
+.key-squares {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+  gap: 15px; /* Space between the items */
+  justify-items: center; /* Center the items horizontally */
+  margin-top: 20px;
+  width: 100%; /* Full width */
+}
 /* Ensuring consistent size for all squares (key and guess) */
 .key-square {
   background-color: #ffffff;
   text-align: center;
-  width: 150px;
-  height: 150px;
+  max-width: 150px; /* Set a max width */
+  min-width: 150px; /* Minimum width for each key */
+  width: 100%; /* Ensure it spans available space */
   display: flex;
   align-items: flex-end;
   margin-bottom: 10px;
@@ -157,6 +191,6 @@
 .guesses {
   display: flex;
   flex-direction: column-reverse; /* Reverse order to insert guesses at the top */
-  width: 100%;
   gap: 10px; /* Optional: Add spacing between guesses */
+  position: absolute; /* Fixed position for guesses */
 }

@@ -5,23 +5,25 @@ const API_URL = "http://localhost:3000";
 
 const useEmojiStore = create((set, get) => ({
     input: '',
-    character: null,          // Current character (character of the day)
+    emoji: null,          // Current character (character of the day)
     revealedEmojis: [],       // The emojis currently revealed
     wrongGuessCount: 0,       // Track wrong guesses
     gameWon: false,           // Flag for game status
     suggestions: [],
     comparedGuess: null,      // Stores the comparison result
+    characterOfTheDay: null,  // Character of the day
+    character: null,          // Character fetched by name
 
     // Fetch the character of the day from the API
-    getCharacter: async () => {
+    getEmoji: async () => {
         try {
             const response = await axios.get(`${API_URL}/api/char/emo`);
-            const character = response.data;
+            const data = response.data;
 
             // Initialize the game with the first emoji revealed
             set({
-                character: character,
-                revealedEmojis: [character.emoji[0], "❓", "❓"],
+                emoji: data,
+                revealedEmojis: [data.emoji[0], "❓", "❓"],
                 wrongGuessCount: 0,
                 gameWon: false,
             });
@@ -29,7 +31,14 @@ const useEmojiStore = create((set, get) => ({
             console.error('Error fetching character of the day:', error);
         }
     },
-
+    getCharacterOfTheDay: async () => { 
+        try {
+            const response = await axios.get(`${API_URL}/api/char/emo-of-the-day`);
+            set({ characterOfTheDay: response.data });
+        } catch (error) {
+            console.error('Error fetching character of the day:', error);
+        }
+    },
     compareGuess: async (guess) => {
         try {
             const response = await axios.post(`${API_URL}/api/char/emo-compare`, { guess });
@@ -42,17 +51,28 @@ const useEmojiStore = create((set, get) => ({
 
     // Action to update input and fetch suggestions
     setInput: (input) => {
-        set({ input });  // Update the input field
+        set({ input });
         if (input.length > 0) {
             axios.get(`${API_URL}/api/char/list-char?name=${input}`)
                 .then(response => {
-                    set({ suggestions: response.data.names });
+                    set({ suggestions: response.data.suggestions });
                 })
                 .catch(err => {
                     console.error('Error fetching character suggestions:', err);
                 });
         } else {
             set({ suggestions: [] });
+        }
+    },
+
+    // Fetch the character by name
+    getCharacter: async (name) => {
+        try {
+            const response = await axios.get(`${API_URL}/api/char/getCharacterByName?name=${name}`);
+            set({ character: response.data });
+            return response.data; // Return the character data to be used directly
+        } catch (error) {
+            console.error('Error fetching character by name:', error);
         }
     },
 

@@ -1,0 +1,24 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white
+}
+
+#frame3 button#connexion2 {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #f38888;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect */
+#frame3 button#connexion2:hover {
+    background-color: #e07676; /* Slightly darker shade of red */
+    transform: scale(1.05); /* Slightly larger on hover */
+}

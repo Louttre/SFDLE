@@ -1,0 +1,158 @@
+/* Achievements.css */
+
+/* Container styling */
+.achievement-page {
+    padding: 20px;
+}
+
+.achievement-list {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* Allows items to wrap to the next line */
+}
+
+/* Achievement item (card container) */
+.achievement-item {
+    width: calc(33.33% - 30px);
+    /* For three cards per row with gaps */
+    min-width: 250px;
+    height: 150px;
+    /* Adjusted height to better fit content */
+    perspective: 1000px;
+    /* Enables 3D space for the flip effect */
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Flip card styles */
+.achievement-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+/* Apply flip transformation when flipped */
+.achievement-item.flipped .achievement-card {
+    transform: rotateY(180deg);
+}
+
+/* Front and back faces of the card */
+.achievement-front,
+.achievement-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #1e293b;
+    border: 2px solid #00eeff;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Front face styling */
+.achievement-front {
+    color: #fff;
+}
+
+/* Back face styling */
+.achievement-back {
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+/* Progress bar styling */
+.progress-bar {
+    background-color: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #3cabbe;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 14px;
+    color: #fff;
+    margin-top: 5px;
+    text-align: start;
+}
+
+/* Achievement name and description */
+.achievement-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #00eeff;
+    margin-bottom: 10px;
+}
+
+.achievement-description {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/* Backside content */
+.achievement-back h3,
+.achievement-back p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Hover effect (optional) */
+.achievement-item:hover .achievement-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the cursor is a pointer over the card */
+.achievement-item:hover {
+    cursor: pointer;
+}
+
+.back-button-style {
+    position: fixed; /* Fix the button relative to the viewport */
+    top: 20px;        /* Distance from the top */
+    left: 20px;       /* Distance from the left */
+    background-color: #ff0000; /* Green background */
+    color: white;              /* White text */
+    border: none;              /* Remove borders */
+    padding: 10px 20px;        /* Some padding */
+    text-align: center;        /* Centered text */
+    text-decoration: none;     /* Remove underline */
+    display: inline-block;     /* Get the element to line up correctly */
+    font-size: 16px;           /* Increase font size */
+    margin: 4px 2px;           /* Some margin */
+    cursor: pointer;           /* Pointer/hand icon */
+    border-radius: 4px;        /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    z-index: 1000;             /* Ensure it stays above other elements */
+  }
+  
+  .back-button-style:hover {
+    background-color: #882121; /* Darker green on hover */
+  }
+
+/* Responsive design adjustments */
+@media (max-width: 800px) {
+    .achievement-item {
+        width: calc(50% - 30px);
+        /* Two cards per row */
+    }
+}
+
+@media (max-width: 500px) {
+    .achievement-item {
+        width: 100%;
+        /* One card per row */
+    }
+}

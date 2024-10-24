@@ -25,7 +25,7 @@ const useWillItKillStore = create((set) => ({
             console.error('Error fetching video data:', err);
         }
     },
-    useranswer: async (guess) => {
+    userAnswer: async (guess) => {
         await axios.post(`${API_URL}/compare`, { answer: guess })
             .then(response => {
                 set({answer: response.data})
@@ -34,7 +34,7 @@ const useWillItKillStore = create((set) => ({
                 console.error('Error retrieving answer:', err);
             })
     },
-    killornot: async () => {
+    killOrNot: async () => {
         await axios.get(`${API_URL}/killornot`)
             .then(response => {
                 set({killornot: response.data})

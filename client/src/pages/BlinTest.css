@@ -1,0 +1,218 @@
+/* src/components/BlindTest.css */
+
+/* Container Styling */
+.blind-test-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #1e293b; /* Example background color */
+    border-radius: 10px;
+    color: white;
+  }
+  
+  /* Player Controls */
+  .player-controls {
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .play-pause-button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .play-pause-button:hover {
+    background-color: #2563eb;
+  }
+  
+  .progress-bar, .volume-slider {
+    width: 80%;
+    margin: 10px 0;
+  }
+  
+  /* Guess History */
+  .guess-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Space below guess history */
+  }
+  
+  .guesses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .guess-item {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  .guess-item.correct {
+    background-color: green;
+  }
+  
+  .guess-item.incorrect {
+    background-color: red;
+  }
+  
+  .guess-item-name {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-style: normal;
+    margin-left: 10px; /* Space between image and name */
+  }
+  
+  .guess-item-image {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    border-radius: 5px; /* Rounded corners for images */
+  }
+  
+  /* Input and Suggestions */
+  .input-section {
+    margin-bottom: 20px;
+  }
+  
+  .listSuggestions {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin-top: 10px; /* Space above suggestions */
+  }
+  
+  .suggestion-item {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    background-color: #f0f0f0;
+    margin-bottom: 5px; /* Space between suggestions */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #e0e0e0; /* Hover effect */
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  /* Answer Box */
+  .answer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; /* Center the answer box */
+    padding: 20px;
+    width: 80%;
+    max-width: 500px; /* Limit maximum width */
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: rgb(5, 139, 0);
+    border: 2px solid rgb(0, 199, 17);
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .answer {
+    text-align: center;
+  }
+  
+  .congratulations {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .answer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+  }
+  
+  .answer-item-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 32px;
+    border-radius: 10px; /* Rounded corners for images */
+  }
+  
+  .answer-text {
+    font-size: 1.2em;
+    text-align: left;
+  }
+  
+  /* Loading Spinner */
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .guess-item, .answer-box {
+      width: 90%;
+    }
+  
+    .answer-item {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .answer-item-image {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .controls, .player-controls {
+      width: 100%;
+    }
+  
+    .progress-bar, .volume-slider {
+      width: 100%;
+    }
+  }
+  
