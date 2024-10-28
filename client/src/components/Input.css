@@ -11,19 +11,26 @@
     left: 10px; /* Distance from the left side */
     transform: translateY(-50%); /* Adjust to truly center it vertically */
     pointer-events: none; /* Make the icon non-clickable */
+    display: flex; /* Align the icon horizontally */
+    align-items: center; /* Align the icon vertically */
 }
 /* Input field styling */
 .custom-input {
     width: 100%;
-    padding: 12px 10px; /* Padding for the input field */
-    padding-left: 40px; /* Add padding to accommodate the icon */
+
+    padding-left: 2.8rem; /* Add padding to accommodate the icon */
+    padding-top: 0.8rem;
+    padding-bottom: 0.4rem;
     font-size: 18px;
+
     border: none; /* Remove default border */
     border-bottom: 2px solid #ff7e7e; /* Red/pink bottom border */
     background-color: transparent; /* Transparent background */
     color: white; /* White text color */
     transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
     caret-color: #ffffff; /* White caret (text cursor) */
+    align-items: center;
+    display: flex;
 }
 
 /* Input field hover and focus */

@@ -1,4 +1,20 @@
-/* Achievements.css */
+/* Variables */
+:root {
+    --m: 1rem;
+    --red: #FF6565;
+    --pink: #FF64F9;
+    --purple: #6B5FFF;
+    --blue: #4D8AFF;
+    --green: #5BFF89;
+    --yellow: #FFEE55;
+    --orange: #FF6D1B;
+}
+
+/* Keyframes for rainbow animation */
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
 
 /* Container styling */
 .achievement-page {
@@ -10,20 +26,17 @@
     flex-direction: row;
     gap: 15px;
     flex-wrap: wrap;
-    /* Allows items to wrap to the next line */
 }
 
 /* Achievement item (card container) */
 .achievement-item {
     width: calc(33.33% - 30px);
-    /* For three cards per row with gaps */
     min-width: 250px;
     height: 150px;
-    /* Adjusted height to better fit content */
     perspective: 1000px;
-    /* Enables 3D space for the flip effect */
     cursor: pointer;
     margin-bottom: 20px;
+    perspective: 1000px;
 }
 
 /* Flip card styles */
@@ -33,11 +46,17 @@
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    border: 3px solid #00eeff;
+
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg));
+    transition: transform 0.3s ease-out;
+    transform-style: preserve-3d;
 }
 
 /* Apply flip transformation when flipped */
 .achievement-item.flipped .achievement-card {
     transform: rotateY(180deg);
+    transform: rotateY(calc(180deg + var(--rotateY, 0deg))) rotateX(var(--rotateX, 0deg));
 }
 
 /* Front and back faces of the card */
@@ -47,10 +66,8 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 5px;
     padding: 10px;
     background-color: #1e293b;
-    border: 2px solid #00eeff;
     box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -66,6 +83,22 @@
     transform: rotateY(180deg);
 }
 
+/* Rainbow animated border for completed achievements */
+.achievement-card.completed {
+    border: 3px solid transparent;
+    background:
+        linear-gradient(#1e293b, #1e293b) padding-box,
+        linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red)) border-box;
+    background-size: 200% 100%;
+    animation: rainbow 3s linear infinite;
+}
+
+/* Speed up animation on hover */
+.achievement-card.completed:hover {
+    animation-duration: 1.5s;
+
+}
+
 /* Progress bar styling */
 .progress-bar {
     background-color: #ddd;
@@ -79,6 +112,18 @@
     height: 100%;
     background-color: #3cabbe;
     transition: width 0.3s ease;
+}
+
+/* Rainbow animated progress bar when completed */
+.progress.completed {
+    background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    background-size: 200% 100%;
+    animation: rainbow 1.5s linear infinite;
+}
+
+/* Speed up progress bar animation on hover */
+.achievement-card.completed:hover .progress.completed {
+    animation-duration: 0.5s;
 }
 
 .progress-text {
@@ -109,50 +154,50 @@
     text-align: center;
 }
 
-/* Hover effect (optional) */
+/* Hover effect */
 .achievement-item:hover .achievement-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ensure the cursor is a pointer over the card */
+/* Cursor pointer */
 .achievement-item:hover {
     cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;
 }
 
 .back-button-style {
-    position: fixed; /* Fix the button relative to the viewport */
-    top: 20px;        /* Distance from the top */
-    left: 20px;       /* Distance from the left */
-    background-color: #ff0000; /* Green background */
-    color: white;              /* White text */
-    border: none;              /* Remove borders */
-    padding: 10px 20px;        /* Some padding */
-    text-align: center;        /* Centered text */
-    text-decoration: none;     /* Remove underline */
-    display: inline-block;     /* Get the element to line up correctly */
-    font-size: 16px;           /* Increase font size */
-    margin: 4px 2px;           /* Some margin */
-    cursor: pointer;           /* Pointer/hand icon */
-    border-radius: 4px;        /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover transition */
-    z-index: 1000;             /* Ensure it stays above other elements */
-  }
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
   
-  .back-button-style:hover {
-    background-color: #882121; /* Darker green on hover */
-  }
+.back-button-style:hover {
+    background-color: #882121;
+}
 
 /* Responsive design adjustments */
 @media (max-width: 800px) {
     .achievement-item {
         width: calc(50% - 30px);
-        /* Two cards per row */
     }
 }
 
 @media (max-width: 500px) {
     .achievement-item {
         width: 100%;
-        /* One card per row */
     }
 }

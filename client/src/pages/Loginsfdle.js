@@ -89,7 +89,7 @@ export const Loginsfdle = () => {
                     </div>
                 </div>
                 <div id="pasencoredecompte?s’inscrire" className="text-left text-[16px] mx-auto text-gray-300">
-                    Don't have an account ? <Link className="text-red-300" to="/register">Register</Link>
+                    Don't have an account ? <Link className="text-red-300 hover:underline" to="/register">Register</Link>
                 </div>
             </div>
         </div>

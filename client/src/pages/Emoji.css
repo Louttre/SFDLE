@@ -7,7 +7,8 @@
     gap: 1rem;
     padding: 1rem;
     border-radius: 5px;
-    background-color: #312727; /* Darker background to match game container */
+    background-color: rgba(49, 39, 39, 0.95); /* Darker blue-gray background */
+    backdrop-filter: blur(5px);
     border: 2px solid #f38888; /* Use the same border color as GameBox */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Consistent shadow for depth */
     box-sizing: border-box;

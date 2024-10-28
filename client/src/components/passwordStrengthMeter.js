@@ -15,11 +15,11 @@ const PasswordCriteria = ({ password }) => {
             {criteria.map((item) => (
                 <div key={item.label} className='flex items-center text-xs'>
                     {item.passed ? (
-                        <Check className='size-4 text-cyan-500 mr-2'></Check>
+                        <Check className='size-4 text-red-300 mr-2'></Check>
                     ) : (
                         <X className='size-4 text-gray-500 mr-2'></X>
                     )}
-                    <span className={item.passed ? 'text-cyan-500' : 'text-gray-500'}>{item.label}</span>
+                    <div className={item.passed ? 'text-white' : 'text-gray-500'}>{item.label}</div>
                 </div>
             ))}
         </div>
@@ -57,8 +57,8 @@ const PasswordStrengthMeter = ({ password }) => {
     return (
         <div className='mt-2'>
             <div className='flex justify-between items-center mb-1'>
-                <span className='text-xs text-gray-400'>Password Strength</span>
-                <span className='text-xs text-gray-400'>{getStrengthText(strength)}</span>
+                <div className='text-xs text-gray-400'>Password Strength</div>
+                <div className='text-xs text-gray-400'>{getStrengthText(strength)}</div>
             </div>
             <div className='flex space-x-1'>
                 {[...Array(4)].map((_, index) => (

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useAchievementStore } from './achievementStore';
 
 const API_URL = "http://localhost:3000/api/char";
 axios.defaults.withCredentials = true;
@@ -9,6 +10,7 @@ axios.defaults.withCredentials = true;
 function areAllComparisonsTrue(comparisonResults) {
     return Object.values(comparisonResults).every(result => result === true);
 }
+
 function getTimeUntilNextMinute() {
     const now = new Date();
     const nextMinute = new Date(now.getTime() + 60000);
@@ -69,6 +71,7 @@ const useCharacterStore = create((set) => ({
             });
             // If the guess is correct, save the game state to cookies
             if (isCorrect) {
+                await useAchievementStore.getState().modifyAchievementProgress('First blood');
                 const response = await axios.get(`${API_URL}/char-of-the-day`);
                 const gameState = {
                     gameCompleted: true,

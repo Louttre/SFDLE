@@ -1,6 +1,9 @@
+// src/components/WillItKill.js
+
 import React, { useEffect, useRef, useState } from 'react';
 import useWillItKillStore from '../store/willitkillStore';
 import './WillItKill.css';
+import Cookies from 'js-cookie';
 
 const WillItKill = () => {
     const {
@@ -19,11 +22,20 @@ const WillItKill = () => {
     const hasPaused = useRef(false); // Use ref for hasPaused
     const hasStartedPlaying = useRef(false); // Use ref for hasStartedPlaying
     const [timeCheckerInterval, setTimeCheckerInterval] = useState(null); // Interval ID for checking time
+    const [isGameLoadedFromCookies, setIsGameLoadedFromCookies] = useState(false); // Track if game was loaded from cookies
 
     useEffect(() => {
         // Fetch the video once when the component mounts
         getVideo();
     }, []); // Empty dependency array ensures the effect runs only once on mount
+
+    function getTimeUntilNextMinute() {
+        const now = new Date();
+        const nextMinute = new Date(now.getTime() + 60000);
+        nextMinute.setSeconds(0, 0); // Set to the start of the next minute
+        const millisecondsUntilReset = nextMinute.getTime() - now.getTime();
+        return millisecondsUntilReset / (1000 * 60 * 60 * 24); // Convert to fraction of a day
+    }
 
     // Function to load the YouTube API
     const loadYouTubeAPI = () => {
@@ -104,28 +116,48 @@ const WillItKill = () => {
     }, [timeCheckerInterval]);
 
     // Handle user choice
-    const handleChoice = (choice) => {
+    const handleChoice = async (choice) => {
         setIsChoiceMade(true); // User made a choice
-        userAnswer(choice); // Send choice to the backend
-        killOrNot();
-
+        const answerData = await userAnswer(choice); // Send choice to the backend and get the correct answer
+        const killOrNotData = await killOrNot(); // Get the kill or not result
+        // Convert the returned data to booleans
+        const answerBoolean = answerData === true || answerData === 'true';
+        const killornotBoolean = killOrNotData === true || killOrNotData === 'true';
+        // Save game state to cookies
+        const gameState = {
+            answer: answerBoolean, // The correct answer from the backend
+            useranswer: choice, // The user's choice
+            killornot: killornotBoolean, // The kill or not result from the backend
+        };
+        const expires = getTimeUntilNextMinute();
+        Cookies.set('gameState_willitkill', JSON.stringify(gameState), { expires });    
         // Resume the video
         if (playerRef.current) {
             playerRef.current.playVideo(); // Resume video playback
         }
     };
 
-    // Show the answer after the video ends
-    const showAnswer = () => {
-        if (videoFinished) {
-            return (
-                <div>
-                    <h3>{answer ? 'Congrats' : 'Wrong answer'}</h3>
-                    <h3>{killornot ? 'It was a kill' : 'It didn\'t kill'}</h3>
-                </div>
-            );
+    // Load game state from cookies on mount
+    useEffect(() => {
+        const savedGameState = Cookies.get('gameState_willitkill');
+        if (savedGameState) {
+            const { answer, useranswer, killornot } = JSON.parse(savedGameState);
+            // Convert answer and killornot to booleans
+            const answerBoolean = answer === true || answer === 'true';
+            const killornotBoolean = killornot === true || killornot === 'true';
+    
+            // Update Zustand store with the saved game state
+            useWillItKillStore.setState({ 
+                answer: answerBoolean, 
+                useranswer, 
+                killornot: killornotBoolean 
+            });
+    
+            setIsChoiceMade(true); // User has already made a choice
+            setVideoFinished(true); // Video has already finished
+            setIsGameLoadedFromCookies(true); // Indicate that the game was loaded from cookies
         }
-    };
+    }, []);
 
     // Load YouTube API when video_id becomes available
     useEffect(() => {
@@ -134,8 +166,32 @@ const WillItKill = () => {
         }
     }, [video_id]);
 
+    // Function to display the answer box and overlay
+    const showAnswer = () => {
+        if (isGameLoadedFromCookies || videoFinished) { // Display answer if game loaded from cookies or video finished
+            return (
+                <>
+                    <div className='modal-overlay'></div> {/* Overlay to blur and darken background */}
+                    <div className='answer-box'>
+                        <div className='answer'>
+                            <h3 style={{ fontWeight: 'bold' }}>
+                                {answer ? 'Congratulations!' : 'Better luck next time!'}
+                            </h3>
+                            <div className='answer-item'>
+                                <div className='answer-text'>
+                                    {killornot ? 'It was a kill.' : 'It did not kill.'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            );
+        }
+        return null;
+    };
+
     return (
-        <div className='video-container' style={{ textAlign: 'center', padding: '24px'}}>
+        <div className='video-container' style={{ textAlign: 'center', padding: '24px' }}>
             {video_id && (
                 <div style={{ position: 'relative', display: 'inline-block' }}>
 
@@ -180,16 +236,20 @@ const WillItKill = () => {
             {/* Show choice buttons when the video is paused and no choice is made */}
             {isPaused && !isChoiceMade && (
                 <div style={{
-                    marginTop: '20px', display: 'flex', flexDirection: 'row', gap:'18px', justifyContent: 'space-between'}}>
-            <button className='choice-button' onClick={() => handleChoice(true)}>Yes, it kills</button>
-            <button className='choice-button' onClick={() => handleChoice(false)}>No, it doesn't</button>
-        </div>
-    )
-}
+                    marginTop: '20px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '18px',
+                    justifyContent: 'space-between'
+                }}>
+                    <button className='choice-button' onClick={() => handleChoice(true)}>Yes, it kills</button>
+                    <button className='choice-button' onClick={() => handleChoice(false)}>No, it doesn't</button>
+                </div>
+            )}
 
-{/* Show the answer after the video ends */ }
-{ showAnswer() }
-        </div >
+            {/* Show the answer after the video ends or when loading from cookies */}
+            {showAnswer()}
+        </div>
     );
 };
 

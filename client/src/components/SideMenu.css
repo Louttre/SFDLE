@@ -15,15 +15,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border-left: 1px solid rgb(243, 139, 139); /* Add white border to the sidebar */
+    border-left: 1px solid rgb(243, 139, 139);
+    overflow: hidden; /* Hide overflowing content */
+    /* Add white border to the sidebar */
 }
 
 /* Sidebar in open state */
 .side-menu.open {
     width: 400px;
     /* Expand when open */
+    display: flex;
     justify-content: center;
     flex-direction: row;
+    align-items: center;
 }
 
 /* Hamburger button */
@@ -82,7 +86,8 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    z-index: 1100; /* Higher z-index than the overlay */
+    z-index: 1100;
+    /* Higher z-index than the overlay */
 }
 
 .hamRotate.active {
@@ -133,9 +138,17 @@
 /* Trophy Container */
 .trophy-container {
     position: absolute;
-    top: 80px; /* Adjust as needed */
+    top: 8rem;
+    left:0;
+    /* Adjust as needed */
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.2rem;
+
 }
 
 /* Trophy Closed State */
@@ -146,36 +159,48 @@
 
 /* Trophy Open State */
 .trophy-container.trophy-open {
-    transform: translatex(-260%) scale(1); /* Normal size when open */
+    /* Normal size when open */
     opacity: 1;
+}
+
+.achievement-items,
+.logout-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    white-space: nowrap;
+
+}
+
+.achievement-items:hover,
+.logout-items:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+.achievement-items-title,
+.logout-items-title {
+    font-size: 1.4rem;
+    font-family: 'Bebas Neue', sans-serif; /* Bold fighting game aesthetic */
+    font-weight: 500;
+    color: #fff;
+    margin-left: 1.5rem;
+    text-transform: uppercase;
 }
 
 /* Trophy Image */
 .trophy {
-    margin-top: 3rem;
-    width: 60px; /* Adjust size as needed */
-    height: 50px;
-    transition: width 0.3s ease, height 0.3s ease;
-    cursor: pointer; /* Optional: change cursor on hover */
-}
-
-/* Hover Effect for Trophy */
-.trophy:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
-}
-
-.logout{
-    margin-top: 2rem;
-    filter: invert(39%) sepia(96%) saturate(6790%) hue-rotate(350deg) brightness(121%) contrast(90%);
-    transition: width 0.3s ease, height 0.3s ease;
-    width: 60px;
+    width: 55px;
     height: 60px;
-    cursor: pointer; /* Optional: change cursor on hover */
+    /* Optional: change cursor on hover */
 }
 
-/* Hover Effect for Trophy */
-.logout:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
+.logout {
+    filter: invert(39%) sepia(96%) saturate(6790%) hue-rotate(350deg) brightness(121%) contrast(90%);
+    height: 60px;
+    cursor: pointer;
+    /* Optional: change cursor on hover */
 }
+

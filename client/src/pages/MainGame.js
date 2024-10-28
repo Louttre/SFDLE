@@ -53,7 +53,7 @@ function MainGame() {
         const percentX = deltaX / centerX; // -1 to 1
         const percentY = deltaY / centerY; // -1 to 1
 
-        const maxTilt = 15; // degrees
+        const maxTilt = 20; // degrees
 
         const rotateY = percentX * maxTilt;
         const rotateX = -percentY * maxTilt;
@@ -176,7 +176,24 @@ function MainGame() {
                 <ul className="listSuggestions">
                     {listSuggestion(suggestions)}
                 </ul>
+                {/* Add the Rules text with hover effect */}
+                <div className="rules-container">
+                    <span className="rules-text">Rules</span>
+                    <div className="rules-popup">
+                        <div className="rules-squares">
+                            <div className="rules-square correct"></div>
+                            <div className="rules-square partial"></div>
+                            <div className="rules-square incorrect"></div>
+                        </div>
+                        <div className="rules-labels">
+                            <div>Correct</div>
+                            <div>Partial</div>
+                            <div>Incorrect</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
 
             {/* Conditionally render Key Squares based on guessHistory */}
             {guessHistory.length > 0 && (

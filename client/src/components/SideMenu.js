@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const SideMenu = () => {
     const [isOpen, setIsOpen] = useState(false); // Sidebar toggle state
     const { isAuth, logout } = useAuthStore(); // Get the authentication state
- 
+
 
     const navigate = useNavigate();
     const toggleMenu = () => {
@@ -18,7 +18,7 @@ const SideMenu = () => {
         logout();
     }
     const handleTrophyClick = () => {
-        
+
         navigate('/achievements');
     };
     return (
@@ -50,22 +50,28 @@ const SideMenu = () => {
                 {/* Render the Loginsfdle component inside the sidebar */}
                 {isAuth && (
                     <div className={`trophy-container ${isOpen ? 'trophy-open' : 'trophy-closed'}`}>
-                        <div>
+                        <div className='achievement-items'
+                            onClick={handleTrophyClick}>
                             <img
                                 className='trophy'
                                 src={`${process.env.PUBLIC_URL}/img/icon/trophy.svg`}
                                 alt="Trophy"
-                                onClick={handleTrophyClick}
                             />
+                            <div className='achievement-items-title'>Achievements</div>
                         </div>
-                        <img
-                            className='logout'
-                            src={`${process.env.PUBLIC_URL}/img/icon/logout.png`}
-                            alt="Logout"
-                            onClick={() => {handleLogout()}}
-                        />
+                        <div className='logout-items'>
+                            <img
+                                className='logout'
+                                src={`${process.env.PUBLIC_URL}/img/icon/logout.png`}
+                                alt="Logout"
+                                onClick={() => { handleLogout() }}
+                            />
+                            <div className='logout-items-title'>Log out</div>
+
+                        </div>
+
+
                     </div>
-                    
                 )}
                 {/* Render the Loginsfdle component inside the sidebar */}
                 {isOpen && !isAuth && <Loginsfdle />}

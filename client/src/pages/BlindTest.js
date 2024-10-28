@@ -5,12 +5,11 @@ import Cookies from 'js-cookie'; // Import js-cookie for cookie management
 import './BlindTest.css'; // Import the CSS file for styling
 import Input from '../components/input'; // Import your Input component
 import { VenetianMask } from 'lucide-react'; // Import an icon
-import './BlindTest.css'; // Import the CSS file for styling
 
 const BlindTest = () => {
   const {
     youtubeLink,           // The YouTube link of the character of the day
-    getBlindTest,  // Action to retrieve the character's YouTube link
+    getBlindTest,          // Action to retrieve the character's YouTube link
     compareGuess,          // Function to compare the user's guess
     gameWon,               // Whether the user has won the game
     setGameWon,            // Action to update the game won state
@@ -31,13 +30,12 @@ const BlindTest = () => {
 
   const imageRef = useRef(null);
   const playerRef = useRef(null); // Ref for ReactPlayer
-  
 
   // Initialize the game on component mount
   useEffect(() => {
     const initializeGame = async () => {
       await getCharacterOfTheDay();
-      await getBlindTest(); // Fetch the character of the day
+      await getBlindTest(); // Fetch the character's YouTube link
       setIsLoading(false); // Set loading to false after fetching
     };
     initializeGame();
@@ -46,12 +44,15 @@ const BlindTest = () => {
     const savedGuessHistory = Cookies.get('guessHistory_blindTest');
     if (savedGuessHistory) {
       setGuessHistory(JSON.parse(savedGuessHistory));
-      getCharacterOfTheDay();
     }
 
     // Load gameCompleted from cookies
     const completed = Cookies.get('gameCompleted_blindTest') === 'true';
     setGameCompleted(completed);
+
+    // Load gameWon from cookies
+    const won = Cookies.get('gameWon_blindTest') === 'true';
+    setGameWon(won);
   }, [getBlindTest]);
 
   // Save guess history to cookies whenever it changes
@@ -63,6 +64,11 @@ const BlindTest = () => {
   useEffect(() => {
     Cookies.set('gameCompleted_blindTest', gameCompleted.toString(), { expires: getTimeUntilNextMinute() });
   }, [gameCompleted]);
+
+  // Save gameWon to cookies whenever it changes
+  useEffect(() => {
+    Cookies.set('gameWon_blindTest', gameWon.toString(), { expires: getTimeUntilNextMinute() });
+  }, [gameWon]);
 
   // Function to calculate cookie expiration
   function getTimeUntilNextMinute() {
@@ -99,7 +105,6 @@ const BlindTest = () => {
   // Handle the user's guess
   const handleGuess = async (characterName) => {
     if (gameCompleted) {
-
       // Prevent further guesses if the game is completed
       return;
     }
@@ -111,15 +116,14 @@ const BlindTest = () => {
       const response = await fetch(`http://localhost:3000/api/char/getCharacterByName?name=${encodeURIComponent(characterName)}`);
       const characterData = await response.json();
       console.log(characterData);
+
       // Update guess history
       setGuessHistory(prevHistory => [...prevHistory, { guess: characterName, isCorrect, character: characterData }]);
 
       if (isCorrect) {
-
         setGameCompleted(true);
         setGameWon(true);
         setErrorMessage(''); // Clear any error messages
-
       } else {
         setErrorMessage('Wrong guess. Try again!'); // Show error message if incorrect
       }
@@ -131,51 +135,52 @@ const BlindTest = () => {
     }
   };
 
-    // Render the suggestion list with images and names
-    const listSuggestion = (suggestions) => {
-      return Array.isArray(suggestions) && suggestions.length > 0 ? (
-          suggestions.map((suggestion, index) => (
-              <li key={index} onClick={() => handleGuess(suggestion.name)} className="suggestion-item">
-                  <img src={`${process.env.PUBLIC_URL}/img/characters-square/${suggestion.image}`} alt={suggestion.name} className="suggestion-image" />
-                  {suggestion.name}
-              </li>
-          ))
-      ) : (
-          <div></div> // Handle the case of no suggestions
-      );
+  // Render the suggestion list with images and names
+  const listSuggestion = (suggestions) => {
+    return Array.isArray(suggestions) && suggestions.length > 0 ? (
+      suggestions.map((suggestion, index) => (
+        <li key={index} onClick={() => handleGuess(suggestion.name)} className="suggestion-item">
+          <img src={`${process.env.PUBLIC_URL}/img/characters-square/${suggestion.image}`} alt={suggestion.name} className="suggestion-image" />
+          {suggestion.name}
+        </li>
+      ))
+    ) : (
+      <div></div> // Handle the case of no suggestions
+    );
   };
-    // Handle mouse movement over the image for tilt effect
-    const handleMouseMove = (e) => {
-      const image = imageRef.current;
-      const rect = image.getBoundingClientRect();
 
-      const x = e.clientX - rect.left; // x position within the element
-      const y = e.clientY - rect.top;  // y position within the element
+  // Handle mouse movement over the image for tilt effect
+  const handleMouseMove = (e) => {
+    const image = imageRef.current;
+    const rect = image.getBoundingClientRect();
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+    const x = e.clientX - rect.left; // x position within the element
+    const y = e.clientY - rect.top;  // y position within the element
 
-      const deltaX = x - centerX;
-      const deltaY = y - centerY;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-      const percentX = deltaX / centerX; // -1 to 1
-      const percentY = deltaY / centerY; // -1 to 1
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
 
-      const maxTilt = 15; // degrees
+    const percentX = deltaX / centerX; // -1 to 1
+    const percentY = deltaY / centerY; // -1 to 1
 
-      const rotateY = percentX * maxTilt;
-      const rotateX = -percentY * maxTilt;
+    const maxTilt = 15; // degrees
 
-      // Set CSS variables for rotation angles
-      image.style.setProperty('--rotateX', `${rotateX}deg`);
-      image.style.setProperty('--rotateY', `${rotateY}deg`);
+    const rotateY = percentX * maxTilt;
+    const rotateX = -percentY * maxTilt;
+
+    // Set CSS variables for rotation angles
+    image.style.setProperty('--rotateX', `${rotateX}deg`);
+    image.style.setProperty('--rotateY', `${rotateY}deg`);
   };
 
   // Reset tilt when mouse leaves the image
   const handleMouseLeave = () => {
-      const image = imageRef.current;
-      image.style.setProperty('--rotateX', `0deg`);
-      image.style.setProperty('--rotateY', `0deg`);
+    const image = imageRef.current;
+    image.style.setProperty('--rotateX', `0deg`);
+    image.style.setProperty('--rotateY', `0deg`);
   };
 
   if (isLoading) {
@@ -242,8 +247,6 @@ const BlindTest = () => {
           </div>
         </div>
 
-
-
         {/* Input and suggestions */}
         {!gameCompleted && (
           <div className="input-section">
@@ -261,59 +264,65 @@ const BlindTest = () => {
           </div>
         )}
       </div>
+
       {/* Guess History */}
       <div className="guess-history">
         <div className='guesses'>
           {guessHistory.map((guessItem, index) => (
-              <div
-                key={index}
-                className={`guess-item ${guessItem.isCorrect ? 'correct' : 'incorrect'}`}
-              >
-                {guessItem.character ? (
-                  <>
-                    <img
-                      className='guess-item-image'
-                      src={`${process.env.PUBLIC_URL}/img/characters-square/${guessItem.character.image}`}
-                      alt={guessItem.character.name}
-                    />
-                    <div className='guess-item-name'>{guessItem.character.name}</div>
-                  </>
-                ) : (
-                  <div className='guess-item-name'>{guessItem.guess}</div>
-                )}
-              </div>
-            ))
+            <div
+              key={index}
+              className={`guess-item ${guessItem.isCorrect ? 'correct' : 'incorrect'}`}
+            >
+              {guessItem.character ? (
+                <>
+                  <img
+                    className='guess-item-image'
+                    src={`${process.env.PUBLIC_URL}/img/characters-square/${guessItem.character.image}`}
+                    alt={guessItem.character.name}
+                  />
+                  <div className='guess-item-name'>{guessItem.character.name}</div>
+                </>
+              ) : (
+                <div className='guess-item-name'>{guessItem.guess}</div>
+              )}
+            </div>
+          ))
           }
         </div>
       </div>
 
-      {/* Answer Box */}
-      {gameCompleted && characterOfTheDay && (
-        <div className='answer-box'>
-          <div className='answer'>
-            <h3 className="congratulations">Congratulations!</h3>
-            <div className='answer-item'>
-              {gameWon && youtubeLink ? (
-                <>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
-                    alt={characterOfTheDay.name}
-                    style={{ width: '100px', height: '100px', marginRight: '32px' }}
-                    className="answer-item-image"
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                    ref={imageRef}
-                  />
-                  <div className='answer-text'>
-                    You found <br /> <strong>{characterOfTheDay.name}</strong>
-                  </div>
-                </>
-              ) : (
-                <span className='guess-item-name'>Character data not available</span>
-              )}
+      {/* Overlay and Answer Box */}
+      {gameCompleted && (
+        <>
+          <div className='modal-overlay'></div>
+          {characterOfTheDay && (
+            <div className='answer-box'>
+              <div className='answer'>
+                <h3 className="congratulations">Congratulations!</h3>
+                <div className='answer-item'>
+                  {gameWon && youtubeLink ? (
+                    <>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
+                        alt={characterOfTheDay.name}
+                        style={{ width: '100px', height: '100px', marginRight: '32px' }}
+                        className="answer-item-image"
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        ref={imageRef}
+                      />
+                      <div className='answer-text'>
+                        You found <br /> <strong>{characterOfTheDay.name}</strong>
+                      </div>
+                    </>
+                  ) : (
+                    <span className='guess-item-name'>Character data not available</span>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+        </>
       )}
     </div>
   );
