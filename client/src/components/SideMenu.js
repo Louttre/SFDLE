@@ -18,7 +18,6 @@ const SideMenu = () => {
         logout();
     }
     const handleTrophyClick = () => {
-
         navigate('/achievements');
     };
     return (

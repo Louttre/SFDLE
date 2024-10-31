@@ -19,7 +19,8 @@ import MainGame from "./pages/MainGame";
 import ForgotPassword from "./pages/ForgotPassword";
 import Achievements from "./pages/Achievements";
 import SideMenu from "./components/SideMenu";
-import TestPage from "./pages/TestPage";
+import MainLayout from "./pages/MainLayout";
+import CompletionChecker from './utils/CompletionChecker';
 
 const RedirectAuthUser = ({ children }) => {
     const { isAuth, user } = useAuthStore();
@@ -37,18 +38,18 @@ const ProtectedRoute = ({ children }) => {
     console.log('Auth Check:', { isAuth, user, isVerified: user?.isVerified });
 
     if (!isAuth) {
-        console.log('Not authenticated, redirecting to /login');
-        return <Navigate to='/login' replace />;
+        console.log('Not authenticated, redirecting to /main');
+        return <Navigate to='/main' replace />;
     }
 
     if (!user) {
-        console.log('No user found, redirecting to /login');
-        return <Navigate to='/login' replace />;
+        console.log('No user found, redirecting to /main');
+        return <Navigate to='/main' replace />;
     }
 
     if (!user.isVerified) {
-        console.log('User not verified, redirecting to /login');
-        return <Navigate to='/login' replace />;
+        console.log('User not verified, redirecting to /main');
+        return <Navigate to='/main' replace />;
     }
 
     console.log('Access granted to protected route');
@@ -68,7 +69,14 @@ const LayoutWithSidebar = ({ children }) => {
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <TestPage/>
+        element: <MainLayout />, // MainLayout with ProtectedRoute
+        children: [
+            { path: 'main', element: <Main /> },
+            { path: 'main-game', element: <MainGame /> },
+            { path: 'willitkill', element: <WillItKill /> },
+            { path: 'emoji', element: <Emoji /> },
+            { path: 'blind-test', element: <BlindTest /> },
+        ],
     },
     {
         path: '/reset-password/:token',

@@ -5,6 +5,9 @@ import Cookies from 'js-cookie'; // Import js-cookie for cookie management
 import './BlindTest.css'; // Import the CSS file for styling
 import Input from '../components/input'; // Import your Input component
 import { VenetianMask } from 'lucide-react'; // Import an icon
+import useCharacterStore from '../store/gameStore'; // Import the game store
+import { Link } from 'react-router-dom';
+import HoverButton from '../components/HoverButton'; // Import HoverButton component
 
 const BlindTest = () => {
   const {
@@ -19,6 +22,8 @@ const BlindTest = () => {
     characterOfTheDay,     // The character of the day
     getCharacterOfTheDay,  // Action to retrieve the character of the day
   } = useBlindTestStore();
+
+  const { setGamesCompleted } = useCharacterStore(); // Import setGameCompleted
 
   const [volume, setVolume] = useState(0.1);            // State for volume control
   const [isPlaying, setIsPlaying] = useState(false);    // Control playback state
@@ -124,6 +129,7 @@ const BlindTest = () => {
         setGameCompleted(true);
         setGameWon(true);
         setErrorMessage(''); // Clear any error messages
+        setGamesCompleted('blindTest');
       } else {
         setErrorMessage('Wrong guess. Try again!'); // Show error message if incorrect
       }
@@ -166,7 +172,7 @@ const BlindTest = () => {
     const percentX = deltaX / centerX; // -1 to 1
     const percentY = deltaY / centerY; // -1 to 1
 
-    const maxTilt = 15; // degrees
+    const maxTilt = 25; // degrees
 
     const rotateY = percentX * maxTilt;
     const rotateX = -percentY * maxTilt;
@@ -294,34 +300,41 @@ const BlindTest = () => {
       {/* Overlay and Answer Box */}
       {gameCompleted && (
         <>
-          <div className='modal-overlay'></div>
-          {characterOfTheDay && (
-            <div className='answer-box'>
-              <div className='answer'>
-                <h3 className="congratulations">Congratulations!</h3>
-                <div className='answer-item'>
-                  {gameWon && youtubeLink ? (
-                    <>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
-                        alt={characterOfTheDay.name}
-                        style={{ width: '100px', height: '100px', marginRight: '32px' }}
-                        className="answer-item-image"
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseLeave}
-                        ref={imageRef}
-                      />
-                      <div className='answer-text'>
-                        You found <br /> <strong>{characterOfTheDay.name}</strong>
+          <div className='modal-overlay'>
+            {characterOfTheDay && (
+              <div className='answer-box'>
+                <div className='answer'>
+                  <h3 className="congratulations">Congratulations!</h3>
+                  <div className='answer-item'>
+                    {gameWon && youtubeLink ? (
+                      <div className='answer-struct'>
+                        <div className='answer-image-text'>
+                          <img
+                            src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
+                            alt={characterOfTheDay.name}
+                            style={{ width: '100px', height: '100px', marginRight: '32px' }}
+                            className="answer-item-image"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                            ref={imageRef}
+                          />
+                          <div className='answer-text'>
+                            You found <br /> <strong>{characterOfTheDay.name}</strong>
+                          </div>
+                        </div>
+                        <div className='button-box'>
+                          <Link to="/main"><HoverButton title='main'></HoverButton></Link>
+                          <Link to="/main-game"><HoverButton title='Next Game'></HoverButton></Link>
+                        </div>
                       </div>
-                    </>
-                  ) : (
-                    <span className='guess-item-name'>Character data not available</span>
-                  )}
+                    ) : (
+                      <span className='guess-item-name'>Character data not available</span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </>
       )}
     </div>

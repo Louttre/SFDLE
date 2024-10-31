@@ -3,6 +3,8 @@ import CharacterSquares from '../components/characterSquares'; // Import Charact
 import useCharacterStore from '../store/gameStore'; // Import Zustand store
 import './MainGame.css'; // Import styles
 import Cookies from 'js-cookie'; // Import Cookies for saving guess history
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import HoverButton from '../components/HoverButton'; // Import HoverButton component
 
 // Custom Key Component for personalized labels/icons/etc.
 function CustomKey({ label, tooltip }) {
@@ -28,6 +30,7 @@ function MainGame() {
         characterOfTheDay,
         getCharacterOfTheDay,
         gameCompleted,
+        setGamesCompleted,
     } = useCharacterStore();
 
     const [guessHistory, setGuessHistory] = useState([]); // Store previous guesses
@@ -150,7 +153,7 @@ function MainGame() {
     useEffect(() => {
         if (gameCompleted) {
             getCharacterOfTheDay(); // Fetch the character of the day
-            // Assume square animations take 1 second (1000ms)
+            setGamesCompleted('mainGame'); // Mark mainGame as completed
             const animationDuration = Cookies.get('gameWon_mainGame') ? 0 : 3000; // Adjust this value based on your actual animation duration
             Cookies.set('gameWon_mainGame', true, { expires: getTimeUntilNextMinute() });
             const timer = setTimeout(() => {
@@ -160,7 +163,7 @@ function MainGame() {
         } else {
             setShowAnswerBox(false);
         }
-    }, [gameCompleted]);
+    }, [gameCompleted, setGamesCompleted]);
 
     return (
         <div className="game-container">
@@ -176,7 +179,6 @@ function MainGame() {
                 <ul className="listSuggestions">
                     {listSuggestion(suggestions)}
                 </ul>
-                {/* Add the Rules text with hover effect */}
                 <div className="rules-container">
                     <span className="rules-text">Rules</span>
                     <div className="rules-popup">
@@ -226,22 +228,31 @@ function MainGame() {
             {/* Message if game is completed */}
             {showAnswerBox && characterOfTheDay && (
                 <>
-                    <div className='modal-overlay'></div> {/* Overlay to blur and darken background */}
-                    <div className='answer-box'>
-                        <div className='answer'>
-                            <h3 style={{ fontWeight: 'bold' }}>Congratulations!</h3>
-                            <div className='answer-item'>
-                                <img
-                                    src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
-                                    alt={`Image of ${characterOfTheDay.name}`} // Enhanced alt text
-                                    style={{ width: '100px', height: '100px', marginRight: '32px' }}
-                                    className='answer-item-image'
-                                    onMouseMove={handleMouseMove}
-                                    onMouseLeave={handleMouseLeave}
-                                    ref={imageRef}
-                                />
-                                <div className='answer-text'>
-                                    You found <br /> <strong>{characterOfTheDay.name}</strong>
+                    <div className='modal-overlay'> {/* Overlay to darken background */}
+                        <div className='answer-box'>
+                            <div className='answer'>
+                                <h3 className="congratulations">Congratulations!</h3>
+                                <div className='answer-item'>
+                                    <div className='answer-struct'>
+                                        <div className='answer-image-text'>
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}/img/characters-square/${characterOfTheDay.image}`}
+                                                alt={characterOfTheDay.name}
+                                                style={{ width: '100px', height: '100px', marginRight: '32px' }}
+                                                className="answer-item-image"
+                                                onMouseMove={handleMouseMove}
+                                                onMouseLeave={handleMouseLeave}
+                                                ref={imageRef}
+                                            />
+                                            <div className='answer-text'>
+                                                You found <br /> <strong>{characterOfTheDay.name}</strong>
+                                            </div>
+                                        </div>
+                                        <div className='button-box'>
+                                            <Link to="/main"><HoverButton title='main'></HoverButton></Link>
+                                            <Link to="/willitkill"><HoverButton title='Next Game'></HoverButton></Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

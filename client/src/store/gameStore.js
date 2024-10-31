@@ -18,6 +18,14 @@ function getTimeUntilNextMinute() {
     const millisecondsUntilReset = nextMinute.getTime() - now.getTime();
     return millisecondsUntilReset / (1000 * 60 * 60 * 24); // Convert to fraction of a day
 }
+// Helper function to get time until midnight
+function getTimeUntilMidnight() {
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0); // Set to midnight
+    const millisecondsUntilMidnight = midnight.getTime() - now.getTime();
+    return millisecondsUntilMidnight / (1000 * 60 * 60 * 24); // Convert to fraction of a day
+}
 
 // Zustand store for managing character-related state
 const useCharacterStore = create((set) => ({
@@ -28,6 +36,12 @@ const useCharacterStore = create((set) => ({
     characterCharacteristics: null,
     characterOfTheDay: null,
     gameCompleted: false,
+    gamesCompleted: {
+        mainGame: false,
+        emojiGame: false,
+        blindTest: false,
+        willItKill: false,
+    },
 
     // Action to update input and fetch suggestions
     setInput: (input) => {
@@ -94,6 +108,36 @@ const useCharacterStore = create((set) => ({
             console.error('Error fetching character of the day:', error);
         }
     },
+
+    setGamesCompleted: (gameName) => set((state) => {
+        const updatedGamesCompleted = {
+            ...state.gamesCompleted,
+            [gameName]: true,
+        };
+        // Save to cookies
+        Cookies.set('gamesCompleted', JSON.stringify(updatedGamesCompleted), { expires: getTimeUntilNextMinute() });
+        return { gamesCompleted: updatedGamesCompleted };
+    }),
+
+    resetGamesCompleted: () => set((state) => {
+        const resetGames = Object.keys(state.gamesCompleted).reduce((acc, key) => {
+            acc[key] = false;
+            return acc;
+        }, {});
+        // Save to cookies
+        Cookies.set('gamesCompleted', JSON.stringify(resetGames), { expires: getTimeUntilNextMinute() });
+        return { gamesCompleted: resetGames };
+    }),
+    // Load completion status from cookies
+    loadGamesCompleted: () => {
+        const savedGamesCompleted = Cookies.get('gamesCompleted');
+        if (savedGamesCompleted) {
+            set({ gamesCompleted: JSON.parse(savedGamesCompleted) });
+        }
+    },
+    // ... other state and actions
+
+
 
 
 }));

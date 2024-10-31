@@ -62,7 +62,7 @@ const AchievementsPage = () => {
         Back to Main
       </button>
 
-      <h2>Your Achievements</h2>
+      <h2 className='your-achievements'>Your Achievements</h2>
       <div className="achievement-list">
         {achievements.map((achievement) => {
           const isCompleted = achievement.progress >= achievement.condition;

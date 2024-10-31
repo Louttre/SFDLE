@@ -177,9 +177,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Ensure it stays above other elements */
+    pointer-events: auto;
 }
 
 /* Responsive Design */

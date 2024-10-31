@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import useWillItKillStore from '../store/willitkillStore';
 import './WillItKill.css';
 import Cookies from 'js-cookie';
+import useCharacterStore from '../store/gameStore';
+import { Link } from 'react-router-dom';
+import HoverButton from '../components/HoverButton';
 
 const WillItKill = () => {
     const {
@@ -14,6 +17,8 @@ const WillItKill = () => {
         killornot,
         killOrNot,
     } = useWillItKillStore();
+
+    const { setGamesCompleted } = useCharacterStore();
 
     const playerRef = useRef(null); // Reference to the YouTube player
     const [isPaused, setIsPaused] = useState(false); // Track if the video is paused
@@ -115,6 +120,13 @@ const WillItKill = () => {
         };
     }, [timeCheckerInterval]);
 
+    useEffect(() => {
+        if ((isGameLoadedFromCookies || videoFinished) && isChoiceMade) {
+            // Game is completed
+            setGamesCompleted('willItKill'); // Mark willItKill as completed
+        }
+    }, [isGameLoadedFromCookies, videoFinished, isChoiceMade, setGamesCompleted]);
+
     // Handle user choice
     const handleChoice = async (choice) => {
         setIsChoiceMade(true); // User made a choice
@@ -130,7 +142,7 @@ const WillItKill = () => {
             killornot: killornotBoolean, // The kill or not result from the backend
         };
         const expires = getTimeUntilNextMinute();
-        Cookies.set('gameState_willitkill', JSON.stringify(gameState), { expires });    
+        Cookies.set('gameState_willitkill', JSON.stringify(gameState), { expires });
         // Resume the video
         if (playerRef.current) {
             playerRef.current.playVideo(); // Resume video playback
@@ -145,14 +157,14 @@ const WillItKill = () => {
             // Convert answer and killornot to booleans
             const answerBoolean = answer === true || answer === 'true';
             const killornotBoolean = killornot === true || killornot === 'true';
-    
+
             // Update Zustand store with the saved game state
-            useWillItKillStore.setState({ 
-                answer: answerBoolean, 
-                useranswer, 
-                killornot: killornotBoolean 
+            useWillItKillStore.setState({
+                answer: answerBoolean,
+                useranswer,
+                killornot: killornotBoolean
             });
-    
+
             setIsChoiceMade(true); // User has already made a choice
             setVideoFinished(true); // Video has already finished
             setIsGameLoadedFromCookies(true); // Indicate that the game was loaded from cookies
@@ -171,15 +183,21 @@ const WillItKill = () => {
         if (isGameLoadedFromCookies || videoFinished) { // Display answer if game loaded from cookies or video finished
             return (
                 <>
-                    <div className='modal-overlay'></div> {/* Overlay to blur and darken background */}
-                    <div className='answer-box'>
-                        <div className='answer'>
-                            <h3 style={{ fontWeight: 'bold' }}>
-                                {answer ? 'Congratulations!' : 'Better luck next time!'}
-                            </h3>
-                            <div className='answer-item'>
+                    <div className='modal-overlay'> {/* Overlay to blur and darken background */}
+                        <div className='answer-box'>
+                            <div className='answer-struct'>
+
+                                <h3 style={{ fontWeight: 'bold' }}>
+                                    {answer ? 'Congratulations!' : 'Better luck next time!'}
+                                </h3>
+
                                 <div className='answer-text'>
                                     {killornot ? 'It was a kill.' : 'It did not kill.'}
+
+                                </div>
+                                <div className='button-box'>
+                                    <Link to="/main"><HoverButton title='main'></HoverButton></Link>
+                                    <Link to="/emoji"><HoverButton title='Next Game'></HoverButton></Link>
                                 </div>
                             </div>
                         </div>
