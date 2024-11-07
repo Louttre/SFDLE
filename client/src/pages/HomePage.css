@@ -1,0 +1,75 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure no margins on html and body */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* HomePage.css */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+}
+
+.home-page__header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: -125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-page__title {
+    font-size: 26rem;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.home-page__character {
+    width: 50%;
+    position: absolute;
+    top: 10rem;
+    z-index: 2;
+}
+
+.home-page__play-button {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3;
+    bottom: 10rem;
+}
+
+.home-page__play-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 1200px) {
+    .home-page__title {
+      font-size: 20rem; /* Smaller font size on smaller screens */
+    }
+  
+    .home-page__character {
+      width: 70%; /* Adjust image size */
+ 
+    }
+  }

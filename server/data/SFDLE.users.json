@@ -1,0 +1,257 @@
+[{
+  "_id": {
+    "$oid": "66f2e6d1fe898e717e215ea9"
+  },
+  "username": "Eredis",
+  "email": "seth.rueda@gmail.com",
+  "password": "$2b$10$MEfGzMnAfT0iLqHNtaHrNO0zW4Zy6/ziUNLcUi3dM4QTXJ.uz1uCS",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2024-09-24T16:20:33.277Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-15T13:25:56.205Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2ed"
+  },
+  "username": "StarGazer",
+  "email": "stargazer@example.com",
+  "password": "$2b$10$hashedpassword1",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-01T12:00:00Z",
+  "updatedAt": "2023-09-01T12:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2ee"
+  },
+  "username": "PixelPainter",
+  "email": "pixelpainter@example.com",
+  "password": "$2b$10$hashedpassword2",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-02T13:00:00Z",
+  "updatedAt": "2023-09-02T13:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2ef"
+  },
+  "username": "CodeNinja",
+  "email": "codeninja@example.com",
+  "password": "$2b$10$hashedpassword3",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-03T14:00:00Z",
+  "updatedAt": "2023-09-03T14:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f0"
+  },
+  "username": "MysticMage",
+  "email": "mysticmage@example.com",
+  "password": "$2b$10$hashedpassword4",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-04T15:00:00Z",
+  "updatedAt": "2023-09-04T15:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f1"
+  },
+  "username": "LoneWolf",
+  "email": "lonewolf@example.com",
+  "password": "$2b$10$hashedpassword5",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-05T16:00:00Z",
+  "updatedAt": "2023-09-05T16:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f2"
+  },
+  "username": "ShadowHunter",
+  "email": "shadowhunter@example.com",
+  "password": "$2b$10$hashedpassword6",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-06T17:00:00Z",
+  "updatedAt": "2023-09-06T17:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f3"
+  },
+  "username": "QuantumFlux",
+  "email": "quantumflux@example.com",
+  "password": "$2b$10$hashedpassword7",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-07T18:00:00Z",
+  "updatedAt": "2023-09-07T18:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f4"
+  },
+  "username": "NeonKnight",
+  "email": "neonknight@example.com",
+  "password": "$2b$10$hashedpassword8",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-08T19:00:00Z",
+  "updatedAt": "2023-09-08T19:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f5"
+  },
+  "username": "CyberSamurai",
+  "email": "cybersamurai@example.com",
+  "password": "$2b$10$hashedpassword9",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-09T20:00:00Z",
+  "updatedAt": "2023-09-09T20:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f6"
+  },
+  "username": "AuroraBorealis",
+  "email": "auroraborealis@example.com",
+  "password": "$2b$10$hashedpassword10",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-10T21:00:00Z",
+  "updatedAt": "2023-09-10T21:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f7"
+  },
+  "username": "BlazeRunner",
+  "email": "blazerunner@example.com",
+  "password": "$2b$10$hashedpassword11",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-11T22:00:00Z",
+  "updatedAt": "2023-09-11T22:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f8"
+  },
+  "username": "ZenMaster",
+  "email": "zenmaster@example.com",
+  "password": "$2b$10$hashedpassword12",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-12T23:00:00Z",
+  "updatedAt": "2023-09-12T23:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2f9"
+  },
+  "username": "DigitalNomad",
+  "email": "digitalnomad@example.com",
+  "password": "$2b$10$hashedpassword13",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-13T10:00:00Z",
+  "updatedAt": "2023-09-13T10:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2fa"
+  },
+  "username": "SilentEcho",
+  "email": "silentecho@example.com",
+  "password": "$2b$10$hashedpassword14",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-14T11:00:00Z",
+  "updatedAt": "2023-09-14T11:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2fb"
+  },
+  "username": "IronGiant",
+  "email": "irongiant@example.com",
+  "password": "$2b$10$hashedpassword15",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-15T12:00:00Z",
+  "updatedAt": "2023-09-15T12:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2fc"
+  },
+  "username": "CrystalCove",
+  "email": "crystalcove@example.com",
+  "password": "$2b$10$hashedpassword16",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-16T13:00:00Z",
+  "updatedAt": "2023-09-16T13:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2fd"
+  },
+  "username": "GalacticVoyager",
+  "email": "galacticvoyager@example.com",
+  "password": "$2b$10$hashedpassword17",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-17T14:00:00Z",
+  "updatedAt": "2023-09-17T14:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2fe"
+  },
+  "username": "MoonWalker",
+  "email": "moonwalker@example.com",
+  "password": "$2b$10$hashedpassword18",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-18T15:00:00Z",
+  "updatedAt": "2023-09-18T15:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b2ff"
+  },
+  "username": "EchoChamber",
+  "email": "echochamber@example.com",
+  "password": "$2b$10$hashedpassword19",
+  "picture": "",
+  "isVerified": false,
+  "createdAt": "2023-09-19T16:00:00Z",
+  "updatedAt": "2023-09-19T16:00:00Z"
+},
+{
+  "_id": {
+    "$oid": "67263aa347ca85ab2c41b300"
+  },
+  "username": "PhoenixRise",
+  "email": "phoenixrise@example.com",
+  "password": "$2b$10$hashedpassword20",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-20T17:00:00Z",
+  "updatedAt": "2023-09-20T17:00:00Z"
+}]

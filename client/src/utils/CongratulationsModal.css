@@ -77,6 +77,13 @@
   margin-left: 10px;
 }
 
+.link-leaderboard {
+  color: rgb(241, 203, 96);
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
 .link-achievement:hover {
   text-decoration: underline;
 }

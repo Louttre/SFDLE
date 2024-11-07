@@ -12,7 +12,7 @@
             "Shin Hashogeki",
             "Shin Shoryuken"
         ],
-        "image": "https://static.wikia.nocookie.net/streetfighter/images/6/60/RyuSF6Outfit1.png/revision/latest?cb=20230619153732",
+        "image": "Ryu150x150.png",
         "first_appearance": "Street Fighter",
         "emoji": [
             "🥋",
@@ -34,7 +34,7 @@
             "Shippu Jinrai-kyaku",
             "Shinryu Reppa"
         ],
-        "image": "https://static.wikia.nocookie.net/streetfighter/images/0/08/KenSF6Outfit1.png/revision/latest?cb=20230619155011",
+        "image": "Ken150x150.png",
         "first_appearance": "Street Fighter",
         "emoji": [
             "🔴",
@@ -56,7 +56,7 @@
             "Feng Shui Engine",
             "Kaisen Dankairaku"
         ],
-        "image": "https://static.wikia.nocookie.net/streetfighter/images/4/41/JuriSF6Outfit1.png/revision/latest?cb=20230619155716",
+        "image": "Juri150x150.png",
         "first_appearance": "Street Fighter IV",
         "emoji": [
             "😈",
@@ -78,7 +78,7 @@
             "Twin Pistons",
             "Dragon Uppercut"
         ],
-        "image": "",
+        "image": "Kazuya150x150.png",
         "first_appearance": "Tekken",
         "emoji": [
             "👿",
@@ -100,14 +100,14 @@
             "Flash Kick",
             "Sonic Hurricane"
         ],
-        "image": "",
+        "image": "Guile150x150.png",
         "first_appearance": "Street Fighter II",
         "emoji": [
             "🇺🇸",
             "👊",
             "💨"
         ],
-        "theme_song": ""
+        "theme_song": "https://www.youtube.com/watch?v=VchglFlNIvo"
     },
     {
         "name": "Reina",
@@ -122,7 +122,7 @@
             "Sentai",
             "Queen Bee Stinger"
         ],
-        "image": "",
+        "image": "Reina150x150.png",
         "first_appearance": "Tekken 8",
         "emoji": [
             "🟣",
@@ -130,5 +130,28 @@
             "👊"
         ],
         "theme_song": ""
-    }
+    },
+    {
+        "name": "Chun-Li",
+        "height": "170cm",
+        "weight": "Secret",
+        "birthplace": "China",
+        "genre": "Female",
+        "eye_color": ["Brown"],
+        "fighting_style": ["Chinese martial arts", "Kung Fu", "Tai Chi"],
+        "special_moves": [
+            "Spinning Bird Kick",
+            "Kikoken",
+            "Hyakuretsukyaku"
+        ],
+        "image": "ChunLi150x150.png",
+        "first_appearance": "Street Fighter II",
+        "emoji": [
+            "👘",
+            "🦵",
+            "🇨🇳"
+        ],
+        "theme_song": "https://www.youtube.com/watch?v=8bg-nvvI9D0"
+    },
+
 ]

@@ -150,6 +150,7 @@ export const compareChar = async (req, res) => {
             first_appearance: characterOfTheDay.first_appearance === guessedCharacter.first_appearance
         };
         res.json(comparison);
+        console.log(comparison);
     } catch (error) {
         console.error('Error comparing characters:', error);
         res.status(500).json({ message: 'Internal server error' });

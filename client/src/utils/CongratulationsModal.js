@@ -19,6 +19,13 @@ function CongratulationsModal() {
                         Achievements
                     </Link>
                 </div>
+                <p>or</p>
+                <p>Check out the leaderboard</p>
+                <div className="leaderboard-page">
+                    <Link to="/leaderboard" className="link-leaderboard">
+                        Leaderboard
+                    </Link>
+                </div>    
             </div>
         </div>
     );

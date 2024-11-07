@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "670e64ad12e1002e5615249d"
+  },
+  "name": "Hello there!",
+  "description": "You have successfully logged in for the first time.",
+  "condition": 1,
+  "points": 100
+},
+{
+  "_id": {
+    "$oid": "670e64ad12e1002e5615249e"
+  },
+  "name": "First blood",
+  "description": "You completed one game.",
+  "condition": 1,
+  "points": 25
+},
+{
+  "_id": {
+    "$oid": "670e64ad12e1002e5615249f"
+  },
+  "name": "The journey begins",
+  "description": "You completed all games of the day.",
+  "condition": 1,
+  "points": 125
+},
+{
+  "_id": {
+    "$oid": "67238039f51de1ef7ce822b3"
+  },
+  "name": "Two in a row",
+  "description": "You completed all games twice",
+  "condition": 2,
+  "points": 200
+},
+{
+  "_id": "64f0c3a1f5d2c6001c2e0001",
+  "username": "StarGazer",
+  "email": "stargazer@example.com",
+  "password": "$2b$10$hashedpassword1",
+  "picture": "",
+  "isVerified": true,
+  "createdAt": "2023-09-01T12:00:00Z",
+  "updatedAt": "2023-09-01T12:00:00Z"
+}]

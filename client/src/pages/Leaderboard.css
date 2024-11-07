@@ -1,0 +1,296 @@
+/* src/pages/Leaderboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+/* Extravagant container */
+.leaderboard-container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #fff;
+    font-family: 'Rboto', sans-serif;
+}
+
+/* Title */
+.leaderboard-title {
+    margin-top: 12rem;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 48px;
+    font-weight: 700;
+    color: #f9d342;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+
+}
+
+/* Grid */
+.leaderboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Card */
+.leaderboard-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e293bd7;
+    border-radius: 12px;
+    width: 280px;
+    margin: 1rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.leaderboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Animated card */
+.animated-card {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rank */
+.leaderboard-rank {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.leaderboard-rank img {
+    width: 100%;
+    height: auto;
+}
+
+/* Info */
+.leaderboard-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.leaderboard-username {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.leaderboard-progress {
+    margin-top: 20px;
+}
+
+/* Progress bar */
+.progress-bar-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar-leaderboard {
+    background: linear-gradient(90deg, #f9d342, #ff8c00);
+    height: 100%;
+    width: 0%;
+    animation: loadProgress 1s forwards;
+}
+
+@keyframes loadProgress {
+    to {
+        width: var(--progress-width);
+    }
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* Points */
+.leaderboard-points {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* Hover effects */
+.leaderboard-card:hover .leaderboard-username {
+    color: #f9d342;
+}
+
+.leaderboard-card:hover .progress-bar {
+    background: linear-gradient(90deg, #ff8c00, #f9d342);
+}
+
+.leaderboard-table tr:hover {
+    background-color: #4a5568;
+}
+
+/* Loading and error messages */
+.leaderboard-loading,
+.leaderboard-error {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    padding: 50px 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Special styling for top 3 ranks */
+.leaderboard-card.rank-1 {
+    border: 3px solid gold;
+}
+
+.leaderboard-card.rank-2 {
+    border: 3px solid silver;
+
+}
+
+.leaderboard-card.rank-3 {
+    border: 3px solid #cd7f32;
+}
+
+
+/* Progress bar colors for top ranks */
+.leaderboard-card.rank-1 .progress-bar-leaderboard {
+    background: linear-gradient(90deg, gold, yellow);
+}
+
+.leaderboard-card.rank-2 .progress-bar-leaderboard {
+    background: linear-gradient(90deg, silver, lightgray);
+}
+
+.leaderboard-card.rank-3 .progress-bar-leaderboard {
+    background: linear-gradient(90deg, #cd7f32, #deb887);
+    /* Bronze shades */
+}
+
+/* Hover effects */
+.leaderboard-card:hover .progress-bar-leaderboard {
+    background: linear-gradient(90deg, #ff8c00, #f9d342);
+}
+
+
+.leaderboard-rank.no-medal {
+    background-color: #f9d342;
+}
+
+
+.leaderboard-rank.no-medal img {
+    display: none;
+}
+
+.rank-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.leaderboard-rank.no-medal .rank-number {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .leaderboard-info {
+        padding-top: 80px;
+    }
+}
+
+/* Leaderboard Top Three Container */
+.leaderboard-top-three {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.leaderboard-list {
+    max-height: 400px; /* Adjust as needed */
+    margin: 0 auto;
+    width: 100%;
+    display: block; /* Ensures it acts as a block-level element */
+  }
+
+/* Leaderboard Table */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.leaderboard-table th {
+    background-color: #1e293b;
+    font-weight: bold;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: #2d3748;
+}
+
+.leaderboard-table tr:nth-child(odd) {
+    background-color: #1a202c;
+}
+
+/* Progress bar in table */
+.leaderboard-table .progress-bar-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 10px;
+    width: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.leaderboard-table .progress-bar-leaderboard {
+    background: linear-gradient(90deg, #f9d342, #ff8c00);
+    height: 100%;
+    width: var(--progress-width);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .leaderboard-table .progress-text {
+        font-size: 12px;
+    }
+}

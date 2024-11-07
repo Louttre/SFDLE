@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Define the character schema
 const userAchievementSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,

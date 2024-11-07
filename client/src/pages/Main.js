@@ -1,7 +1,6 @@
 // Main.js
 import React from 'react';
 import './main.css';
-import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import ArrowButton from '../components/arrowButton';
 
@@ -18,12 +17,7 @@ const Main = () => {
                 <ArrowButton name='Emoji Game' color='red' />
             </Link>
             <Link to="/blind-test">
-            <ArrowButton name='Blind Test' color='red' />
-            </Link>
-            <Link to="/silhouette">
-                <motion.button whileHover={{ scale: 1.1 }}>
-                    Silhouette
-                </motion.button>
+                <ArrowButton name='Blind Test' color='red' />
             </Link>
         </div>
     );

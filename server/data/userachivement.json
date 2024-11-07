@@ -1,0 +1,353 @@
+[
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82305"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2ed"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82306"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2ed"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249e"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82307"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2ee"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82308"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2ef"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82309"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f0"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230a"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f1"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230b"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f1"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249e"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230c"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f1"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249f"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230d"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f2"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230e"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f3"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8230f"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f4"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82310"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f4"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249e"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82311"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f5"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82312"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f6"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82313"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f7"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82314"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f8"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82315"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2f9"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82316"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2fa"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82317"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2fb"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82318"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2fc"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce82319"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2fd"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231a"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2fe"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231b"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b2ff"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 0,
+    "completed": false
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231c"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b300"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249d"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231d"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b300"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249e"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231e"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b300"
+    },
+    "achievementId": {
+        "$oid": "670e64ad12e1002e5615249f"
+    },
+    "progress": 1,
+    "completed": true
+},
+{
+    "_id": {
+        "$oid": "673a3e5bf51de1ef7ce8231f"
+    },
+    "userId": {
+        "$oid": "67263aa347ca85ab2c41b300"
+    },
+    "achievementId": {
+        "$oid": "67238039f51de1ef7ce822b3"
+    },
+    "progress": 2,
+    "completed": true
+}
+]

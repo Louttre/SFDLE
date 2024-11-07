@@ -20,7 +20,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Achievements from "./pages/Achievements";
 import SideMenu from "./components/SideMenu";
 import MainLayout from "./pages/MainLayout";
+import Leaderboard from "./pages/Leaderboard";
 import CompletionChecker from './utils/CompletionChecker';
+import HomePage from "./pages/HomePage";
 
 const RedirectAuthUser = ({ children }) => {
     const { isAuth, user } = useAuthStore();
@@ -76,7 +78,12 @@ const router = createBrowserRouter([
             { path: 'willitkill', element: <WillItKill /> },
             { path: 'emoji', element: <Emoji /> },
             { path: 'blind-test', element: <BlindTest /> },
+            { path: 'homepage', element: <HomePage /> },
         ],
+    },
+    {
+        path: '/home',
+        element: <HomePage />,
     },
     {
         path: '/reset-password/:token',
@@ -133,6 +140,10 @@ const router = createBrowserRouter([
     {
         path: '*',
         element: <PageNotFound />
+    },
+    {
+        path: '/leaderboard',
+        element: <Leaderboard />
     },
 ]);
 

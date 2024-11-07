@@ -27,6 +27,7 @@ function CompletionChecker() {
   useEffect(() => {
     if (allGamesCompleted && location.pathname !== '/main') {
       modifyAchievementProgress('The journey begins')
+      modifyAchievementProgress('Two in a row')
       navigate('/main');
     }
   }, [allGamesCompleted, navigate, location.pathname]);

@@ -41,8 +41,17 @@ export const fightingStyleCompare = (char1, char2) => {
 export const heightWeightCompare = (char1, char2) => {
     // Compare the height and weight of two characters
     
+
     let value1 = parseInt(char1.replace(/\D/g, ''), 10); // \D matches any non-digit character
     let value2 = parseInt(char2.replace(/\D/g, ''), 10); // Replace all non-digit characters with an empty string
+
+    if (char2.includes("Secret") && char1.includes("Secret")) {
+        return true;
+    } else if (char2.includes("Secret")){
+        return false;
+    } else if (char1.includes("Secret")) {
+        return false;
+    }
 
     // Compare the values
     if (value1 === value2) {

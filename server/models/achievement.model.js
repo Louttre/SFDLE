@@ -14,6 +14,10 @@ const AchievementSchema = new mongoose.Schema({
     condition: {
         type: Number, // integer related to the achievement
         required: true
+    },
+    points: {
+        type: Number,
+        required: true
     }
 })
 

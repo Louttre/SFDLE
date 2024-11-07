@@ -130,3 +130,65 @@ export const unlockAchievement = async (req, res) => {
         res.status(500).json({ message: 'An error occurred while unlocking the achievement' });
     }
 };
+
+export const getLeaderboard = async (req, res) => {
+    try {
+        // Get the total number of achievements
+        const totalAchievements = await AchievementModel.countDocuments();
+
+        // Aggregate data to get the leaderboard
+        const leaderboard = await UserAchievementModel.aggregate([
+            // Match only completed achievements
+            { $match: { completed: true } },
+            // Lookup achievements to get points
+            {
+                $lookup: {
+                    from: 'achievements', // Collection name in MongoDB
+                    localField: 'achievementId',
+                    foreignField: '_id',
+                    as: 'achievement',
+                },
+            },
+            // Unwind the achievement array
+            { $unwind: '$achievement' },
+            // Group by userId and sum the points
+            {
+                $group: {
+                    _id: '$userId',
+                    totalPoints: { $sum: '$achievement.points' },
+                    achievementCount: { $sum: 1 },
+                },
+            },
+            // Sort by totalPoints descending
+            { $sort: { totalPoints: -1 } },
+            // Limit to top 50 users
+            { $limit: 50 },
+            // Lookup users to get username
+            {
+                $lookup: {
+                    from: 'users', // Collection name in MongoDB
+                    localField: '_id',
+                    foreignField: '_id',
+                    as: 'user',
+                },
+            },
+            // Unwind the user array
+            { $unwind: '$user' },
+            // Project the fields we need
+            {
+                $project: {
+                    _id: 0,
+                    userId: '$_id',
+                    username: '$user.username',
+                    totalPoints: 1,
+                    achievementCount: 1,
+                },
+            },
+        ]);
+
+        res.json({ totalAchievements, leaderboard });
+    } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
