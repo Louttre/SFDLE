@@ -84,6 +84,17 @@
   margin-left: 10px;
 }
 
+.link-leaderboard:hover {
+  text-decoration: underline;
+}
+
 .link-achievement:hover {
   text-decoration: underline;
+}
+
+.leaderboard-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }

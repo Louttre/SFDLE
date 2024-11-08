@@ -21,7 +21,12 @@ function CongratulationsModal() {
                 </div>
                 <p>or</p>
                 <p>Check out the leaderboard</p>
-                <div className="leaderboard-page">
+                <div className="leaderboard-box">
+                    <img
+                        className='leaderboard-icon'
+                        src={`${process.env.PUBLIC_URL}/img/medals/gold-medal.png`}
+                        alt="Medal"
+                    />
                     <Link to="/leaderboard" className="link-leaderboard">
                         Leaderboard
                     </Link>
