@@ -20,6 +20,9 @@ const SideMenu = () => {
     const handleTrophyClick = () => {
         navigate('/achievements');
     };
+    const handleMedalClick = () => {
+        navigate('/leaderboard');
+    };
     return (
         <div>
             {/* Sidebar */}
@@ -57,6 +60,16 @@ const SideMenu = () => {
                                 alt="Trophy"
                             />
                             <div className='achievement-items-title'>Achievements</div>
+                        </div>
+                        <div className='leaderboard-items'>
+                            <img
+                                className='leaderboard-icon'
+                                src={`${process.env.PUBLIC_URL}/img/medals/gold-medal.png`}
+                                alt="gold-medal"
+                                onClick={() => { handleMedalClick() }}
+                            />
+                            <div className='leaderboard-items-title'>Leaderboard</div>
+
                         </div>
                         <div className='logout-items'>
                             <img

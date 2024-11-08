@@ -253,6 +253,7 @@ const EmojiGame = () => {
                     className="guess-item-image"
                     src={`${process.env.PUBLIC_URL}/img/characters-square/${guessItem.character.image}`}
                     alt={guessItem.character.name}
+                    draggable="false"
                   />
                   <div className="guess-item-name">
                     {guessItem.character.name}
@@ -286,6 +287,7 @@ const EmojiGame = () => {
                       onMouseMove={handleMouseMove}
                       onMouseLeave={handleMouseLeave}
                       ref={imageRef}
+                      draggable="false"
                     />
                     <div className="answer-text">
                       You found <br /> <strong>{characterOfTheDay.name}</strong>

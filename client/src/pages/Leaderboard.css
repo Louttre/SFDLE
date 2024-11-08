@@ -10,7 +10,8 @@
     flex-direction: column;
     position: relative;
     color: #fff;
-    font-family: 'Rboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 40px; /* Adjust the value as needed */
 }
 
 /* Title */

@@ -18,6 +18,7 @@ export const useAchievementStore = create((set) => ({
         try {
             const response = await axios.get(`${API_URL}/getuserachievements`);
             set({ achievements: response.data, isLoading: false });
+            console.log('Achievements:', response.data);
         } catch (error) {
             set({
                 error: error.response?.data?.message || 'Error fetching achievements',

@@ -25,7 +25,7 @@ const HomePage = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   };
 
@@ -48,16 +48,14 @@ const HomePage = () => {
           variants={itemVariants}
         />
       </div>
-
-      <motion.button
-        className="home-page__play-button"
-        onClick={handlePlayClick}
+      <div
+        className="dta"
+        style={{ backgroundColor: 'red' }}
         variants={itemVariants}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        onClick={handlePlayClick}
       >
-        Play
-      </motion.button>
+      <span>Play</span>
+    </div>
     </motion.div>
   );
 };

@@ -187,7 +187,7 @@ const WillItKill = () => {
                         <div className='answer-box'>
                             <div className='answer-struct'>
 
-                                <h3 style={{ fontWeight: 'bold' }}>
+                                <h3 style={{ fontWeight: 'bold', fontSize: '2rem' }}>
                                     {answer ? 'Congratulations!' : 'Better luck next time!'}
                                 </h3>
 

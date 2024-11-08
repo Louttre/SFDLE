@@ -164,7 +164,8 @@
 }
 
 .achievement-items,
-.logout-items {
+.logout-items,
+.leaderboard-items {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -175,13 +176,15 @@
 }
 
 .achievement-items:hover,
-.logout-items:hover {
+.logout-items:hover,
+.leaderboard-items:hover {
     transform: scale(1.05);
     transition: transform 0.2s ease;
 }
 
 .achievement-items-title,
-.logout-items-title {
+.logout-items-title,
+.leaderboard-items-title {
     font-size: 1.4rem;
     font-family: 'Bebas Neue', sans-serif; /* Bold fighting game aesthetic */
     font-weight: 500;
@@ -202,5 +205,11 @@
     height: 60px;
     cursor: pointer;
     /* Optional: change cursor on hover */
+}
+
+.leaderboard-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: 3px;
 }
 

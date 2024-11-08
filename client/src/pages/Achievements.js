@@ -100,7 +100,7 @@ const AchievementsPage = () => {
                 <div className="achievement-back">
                   {/* Backside content */}
                   <h3 className="achievement-name">{achievement.name}</h3>
-                  <p className="achievement-description">Additional information about this achievement.</p>
+                  <p className={`achievement-points ${isCompleted ? 'completed' : ''}`}>{achievement.points} points</p>
                 </div>
               </div>
             </div>

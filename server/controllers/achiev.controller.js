@@ -34,6 +34,7 @@ export const getUserAchievements = async (req, res) => {
                 condition: achievement.condition,
                 progress: userAchievement ? userAchievement.progress : 0,
                 completed: userAchievement ? userAchievement.completed : false,
+                points: achievement.points,
             };
         });
 
@@ -94,7 +95,6 @@ export const modifyUserAchievement = async (req, res) => {
         }
 
         await userAchievement.save();
-
         res.status(200).json({
             message: 'Achievement progress updated',
             completed: completedNow,
