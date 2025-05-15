@@ -14,7 +14,6 @@ SFDLE is an interactive online trivia game designed for fans of fighting games, 
 - [Usage](#usage)
 - [Deployment](#deployment)
 - [Contribution](#contribution)
-- [License](#license)
 
 ## Features
 - **Daily Character Guessing Game**: Inspired by games like Wordle, but dedicated to Street Fighter characters.
