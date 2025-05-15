@@ -134,10 +134,6 @@ Interested in contributing to SFDLE?
 4. Push to the branch (`git push origin feature/YourFeatureName`).
 5. Open a Pull Request.
 
-## License
-[MIT License](LICENSE)
-
----
 
 Thank you for checking out SFDLE! We are always open to feedback and contributions to make this project a better experience for the FGC. If you have suggestions or find any bugs, feel free to open an issue or reach out directly.
 
